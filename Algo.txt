@@ -1,0 +1,27 @@
+Nous sommes Luxury by Ess, une boutique en ligne spécialisée dans l’horlogerie d’exception et les accessoires de prestige (maroquinerie, 
+bijoux, parfums, lunettes et technologies de luxe et autres… ).
+
+Notre mission est de vous proposer des pièces rares de qualité supérieure, 
+avec un service de livraison sécurisé partout dans le monde. 
+En clair, nous sélectionnons le meilleur du raffinement pour sublimer votre style au quotidien.
+
+Le but est de concevoir un site web premium et épuré pour la marque Luxury by Ess. 
+Un site épuré qui repond à un design premium en fusionnant les couleurs : 
+- Pale Orange (HEX f8f1o4, RGB 248.241.228, CMYK 2.4.9.0)
+- Dark Cyan (HEX 0333331, RGB 3.51.49, CMYK 90,56,66,60)
+
+Les composants ou modules indispensables à retrouver dans le site :
+- Header avec menu hamburger premium
+- Panier dans le header (une icône svg du panier dans le header. Le panier doit être logiquement bien géré afin d'assurer le bon fonctionnement du panier)
+- Hero (contenant un carroussel des images avec pagination comprenant un texte descriptif de la collection)
+- Filtrage dynamique des données(une section où on retrouve les produits regroupés par section)
+- Bouton "ajouter au panier" dans chaque produit (pour permettre le transfert à chaque clic sur dans le panier facilitant l'achat)
+- Exposition de meilleurs produits (à l'aide d'une animation carroussel premium de défilement)
+- Footer premium en colonne et icônes svg des réseaux sociaux (Facebook, Tiktok, instagram)
+- Bie placer le logo de la marque ajoutée comme pièce-joint dans le header et footer
+- Un site responsive pour toutes les résolutions d'écrans
+
+L'architecture et le design doivent reposer sur ces technologies :
+- HTML 5 
+- Tailwind Css & Css 
+- Javascript

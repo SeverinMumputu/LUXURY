@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury by Ess</title>
+    
+    <!-- Tailwind CSS (via CDN pour le fichier unique) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts pour un rendu Premium (Playfair Display pour les titres, Lato pour le texte) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- Configuration Tailwind pour intégrer vos couleurs -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        paleOrange: '#f8f1e4',
+                        darkCyan: '#033331',
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Lato"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+</head>
+<body class="font-sans antialiased overflow-x-hidden">
+
+    <!-- HEADER & NAVIGATION -->
+    <header id="main-header" class="fixed top-0 w-full z-50 transition-all duration-300 bg-darkCyan text-paleOrange py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            
+            <!-- Menu Hamburger (Mobile & Desktop) -->
+            <button id="menu-btn" class="p-2 hover:opacity-75 transition" aria-label="Ouvrir le menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square">
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="18" x2="15" y2="18"></line>
+                </svg>
+            </button>
+
+            <!-- Logo -->
+            <a href="#" class="flex items-center justify-center absolute left-1/2 transform -translate-x-1/2">
+                <!-- Utilisation de l'image jointe -->
+                <img src="Luxury LXY loo designed by lisalarvisual Inc ©️ Juin 2026.png" alt="Luxury by Ess Logo" class="h-60 md:h-60 object-contain logo-blend">
+            </a>
+
+            <!-- Panier -->
+            <button id="cart-btn" class="p-2 relative hover:opacity-75 transition" aria-label="Ouvrir le panier">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <path d="M16 10a4 4 0 0 1-8 0"></path>
+                </svg>
+                <span id="cart-badge" class="absolute top-0 right-0 bg-paleOrange text-darkCyan text-[10px] font-bold px-1.5 py-0.5 rounded-full hidden">0</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- MENU HAMBURGER (Overlay) -->
+    <div id="mobile-menu" class="fixed inset-0 bg-darkCyan text-paleOrange z-[60] transform -translate-x-full transition-transform duration-500 ease-in-out flex flex-col justify-center items-center">
+        <button id="close-menu-btn" class="absolute top-8 right-8 p-2 hover:opacity-75 transition">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+        <nav class="flex flex-col items-center space-y-8 text-2xl font-serif tracking-wide">
+            <a href="#collections" class="hover:text-white transition menu-link">Nos Collections</a>
+            <a href="#best-sellers" class="hover:text-white transition menu-link">Prestige</a>
+            <a href="#boutique" class="hover:text-white transition menu-link">La Boutique</a>
+            <a href="#footer" class="hover:text-white transition menu-link">Contact</a>
+        </nav>
+    </div>
+
+    <!-- PANIER (Sidebar) -->
+    <div id="cart-sidebar" class="fixed inset-y-0 right-0 w-full sm:w-96 bg-paleOrange border-l border-darkCyan/10 shadow-2xl z-[60] transform translate-x-full transition-transform duration-500 ease-in-out flex flex-col">
+        <div class="p-6 border-b border-darkCyan/10 flex justify-between items-center bg-paleOrange">
+            <h2 class="text-2xl font-serif text-darkCyan">Votre Sélection</h2>
+            <button id="close-cart-btn" class="p-2 text-darkCyan hover:opacity-75 transition">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        
+        <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-6">
+            <!-- Les articles du panier seront injectés ici par JS -->
+            <p class="text-center text-darkCyan/60 italic font-serif mt-10">Votre panier est d'un raffinement absolu, mais vide.</p>
+        </div>
+
+        <div class="p-6 border-t border-darkCyan/10 bg-paleOrange">
+            <div class="flex justify-between items-center mb-6">
+                <span class="text-lg uppercase tracking-wider font-semibold">Total</span>
+                <span id="cart-total" class="text-2xl font-serif font-bold">0,00 €</span>
+            </div>
+            <button class="w-full bg-darkCyan text-paleOrange py-4 uppercase tracking-widest text-sm font-semibold hover:bg-black transition-colors">
+                Finaliser l'achat
+            </button>
+        </div>
+    </div>
+    <!-- Overlay sombre pour fermer le panier -->
+    <div id="cart-overlay" class="fixed inset-0 bg-black/40 z-[55] hidden transition-opacity"></div>
+
+    <!-- HERO SECTION (Carrousel) -->
+    <section id="hero" class="relative h-screen w-full bg-darkCyan overflow-hidden flex items-center justify-center">
+        <!-- Les slides seront gérés via JavaScript -->
+        <div id="hero-bg" class="absolute inset-0 bg-cover bg-center transition-all duration-1000 ease-in-out" style="background-image: url('https://images.unsplash.com/photo-1523170335258-f5ed11844a49?q=80&w=2080&auto=format&fit=crop');"></div>
+        <div class="absolute inset-0 bg-darkCyan/50 mix-blend-multiply"></div> <!-- Filtre assombrissant -->
+        
+        <div class="relative z-10 text-center px-4 max-w-4xl">
+            <h3 id="hero-subtitle" class="text-paleOrange text-sm md:text-base uppercase tracking-[0.3em] mb-4 opacity-0 fade-in" style="animation-delay: 0.2s;">Horlogerie d'exception</h3>
+            <h1 id="hero-title" class="text-4xl md:text-6xl lg:text-7xl font-serif text-paleOrange mb-6 leading-tight opacity-0 fade-in" style="animation-delay: 0.4s;">L'Élégance à chaque seconde</h1>
+            <p id="hero-desc" class="text-paleOrange/80 md:text-lg mb-10 font-light max-w-2xl mx-auto opacity-0 fade-in" style="animation-delay: 0.6s;">Sublimez votre style au quotidien avec nos pièces rares et de qualité supérieure.</p>
+            <a href="#boutique" class="inline-block border border-paleOrange text-paleOrange px-8 py-4 uppercase tracking-widest text-sm hover:bg-paleOrange hover:text-darkCyan transition-colors duration-300 opacity-0 fade-in" style="animation-delay: 0.8s;">
+                Découvrir la collection
+            </a>
+        </div>
+
+        <!-- Pagination Carrousel -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex space-x-3 z-10" id="hero-pagination">
+            <!-- Injecté par JS -->
+        </div>
+    </section>
+
+    <!-- SECTION : EXPOSITION DES MEILLEURS PRODUITS -->
+    <section id="best-sellers" class="py-24 bg-paleOrange">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-serif text-darkCyan mb-4">L'Excellence Recommandée</h2>
+                <div class="w-16 h-0.5 bg-darkCyan mx-auto mb-4"></div>
+                <p class="text-darkCyan/70">Nos pièces maîtresses les plus convoitées par nos clients prestigieux.</p>
+            </div>
+
+            <!-- Carrousel horizontal premium -->
+            <div class="relative group">
+                <button id="scroll-left" class="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 md:-translate-x-8 z-10 p-3 bg-white shadow-lg text-darkCyan rounded-full opacity-0 group-hover:opacity-100 transition-opacity disabled:opacity-0">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                </button>
+                
+                <div id="premium-carousel" class="flex overflow-x-auto hide-scrollbar gap-8 snap-x snap-mandatory scroll-smooth pb-8">
+                    <!-- Les produits Prestige seront injectés ici par JS -->
+                </div>
+
+                <button id="scroll-right" class="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 md:translate-x-8 z-10 p-3 bg-white shadow-lg text-darkCyan rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION : BOUTIQUE & FILTRAGE DYNAMIQUE -->
+    <section id="boutique" class="py-24 bg-darkCyan text-paleOrange">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 border-b border-paleOrange/20 pb-8">
+                <div>
+                    <h2 class="text-3xl md:text-5xl font-serif mb-4">La Boutique</h2>
+                    <p class="text-paleOrange/70 max-w-xl font-light">Une sélection méticuleuse d'horlogerie, maroquinerie, bijoux, parfums, lunettes et technologies de luxe.</p>
+                </div>
+                
+                <!-- Boutons de filtre -->
+                <div class="mt-8 md:mt-0 flex flex-wrap gap-4" id="filter-buttons">
+                    <button class="filter-btn active border-b border-paleOrange pb-1 uppercase tracking-widest text-xs font-semibold" data-filter="all">Tout</button>
+                    <button class="filter-btn text-paleOrange/50 hover:text-paleOrange transition pb-1 uppercase tracking-widest text-xs" data-filter="horlogerie">Horlogerie</button>
+                    <button class="filter-btn text-paleOrange/50 hover:text-paleOrange transition pb-1 uppercase tracking-widest text-xs" data-filter="maroquinerie">Maroquinerie</button>
+                    <button class="filter-btn text-paleOrange/50 hover:text-paleOrange transition pb-1 uppercase tracking-widest text-xs" data-filter="parfums">Parfums</button>
+                    <button class="filter-btn text-paleOrange/50 hover:text-paleOrange transition pb-1 uppercase tracking-widest text-xs" data-filter="accessoires">Accessoires</button>
+                </div>
+            </div>
+
+            <!-- Grille de produits -->
+            <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Les produits seront injectés ici via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER PREMIUM -->
+    <footer id="footer" class="bg-black text-paleOrange pt-20 pb-10 border-t border-darkCyan">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <!-- Col 1 : Marque -->
+                <div class="flex flex-col items-start space-y-6">
+                    <img src="Luxury LXY loo designed by lisalarvisual Inc ©️ Juin 2026.png" alt="Luxury by Ess Logo" class="h-30 object-contain logo-blend">
+                </div>
+
+                 <p class="text-sm text-paleOrange/70 font-light">
+                        Nous sélectionnons le meilleur du raffinement pour sublimer votre style au quotidien. Service de livraison sécurisé partout dans le monde.
+                    </p>
+
+                <!-- Col 2 : Liens rapides -->
+                <div>
+                    <h4 class="text-lg font-serif mb-6 tracking-wide uppercase">Découvrir</h4>
+                    <ul class="space-y-4 text-sm font-light text-paleOrange/70">
+                        <li><a href="#" class="hover:text-paleOrange transition">Nouvelles Collections</a></li>
+                        <li><a href="#" class="hover:text-paleOrange transition">Horlogerie</a></li>
+                        <li><a href="#" class="hover:text-paleOrange transition">Maroquinerie</a></li>
+                        <li><a href="#" class="hover:text-paleOrange transition">Éditions Limitées</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Col 3 : Service Client 
+                <div>
+                    <h4 class="text-lg font-serif mb-6 tracking-wide uppercase">Assistance</h4>
+                    <ul class="space-y-4 text-sm font-light text-paleOrange/70">
+                        <li><a href="#" class="hover:text-paleOrange transition">Contactez-nous</a></li>
+                        <li><a href="#" class="hover:text-paleOrange transition">Livraison Sécurisée</a></li>
+                        <li><a href="#" class="hover:text-paleOrange transition">Retours & Échanges</a></li>
+                        <li><a href="#" class="hover:text-paleOrange transition">Entretien & Garanties</a></li>
+                    </ul>
+                </div>-->
+
+                <!-- Col 4 : Newsletter & Réseaux sociaux 
+                <div>
+                    <h4 class="text-lg font-serif mb-6 tracking-wide uppercase">Le Club LXY</h4>
+                    <p class="text-sm font-light text-paleOrange/70 mb-4">Inscrivez-vous pour un accès anticipé aux pièces rares.</p>
+                    <form class="flex border-b border-paleOrange/30 pb-2 mb-8">
+                        <input type="email" placeholder="Votre courriel" class="bg-transparent w-full focus:outline-none text-sm placeholder-paleOrange/40">
+                        <button type="submit" class="uppercase tracking-widest text-xs font-bold hover:text-white transition">Joindre</button>
+                    </form>-->
+                    
+                    <!-- Icônes Réseaux Sociaux -->
+                    <div class="flex space-x-6">
+                        <!-- Instagram -->
+                        <a href="#" class="text-paleOrange/70 hover:text-paleOrange transition" aria-label="Instagram">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <!-- Facebook -->
+                        <a href="#" class="text-paleOrange/70 hover:text-paleOrange transition" aria-label="Facebook">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                        </a>
+                        <!-- Tiktok -->
+                        <a href="#" class="text-paleOrange/70 hover:text-paleOrange transition" aria-label="TikTok">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-paleOrange/20 pt-8 flex flex-col md:flex-row justify-between items-center text-xs font-light text-paleOrange/50">
+                <p>&copy; 2026 Luxury by Ess. Tous droits réservés.</p>
+                <div class="space-x-4 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-paleOrange transition">Designed by Mercato</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script src="script.js"></script>
+</body>
+</html>

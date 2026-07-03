@@ -1,0 +1,35 @@
+
+        /* Styles personnalisés pour parfaire le design */
+        body {
+            background-color: #f8f1e4;
+            color: #033331;
+        }
+
+        /* Masquer les barres de défilement pour les carrousels */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Animations fluides */
+        .fade-in {
+            animation: fadeIn 0.8s ease-in-out forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Classe pour l'overlay du Hero avec transition fluide */
+        .hero-slide {
+            transition: opacity 1s ease-in-out;
+        }
+        
+        /* Astuce pour que le logo noir s'intègre parfaitement sur le fond sombre */
+        .logo-blend {
+            mix-blend-mode: lighten;
+        }
