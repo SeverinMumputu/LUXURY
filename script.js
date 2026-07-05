@@ -36,6 +36,8 @@
         const cartItemsContainer = document.getElementById('cart-items-container');
         const cartTotal = document.getElementById('cart-total');
         const emptyCartMsg = document.getElementById('empty-cart-msg');
+        const checkoutBtn = document.getElementById("checkout-btn");
+        const WHATSAPP_NUMBER = "243835728309";
         
         const slides = document.querySelectorAll('.hero-slide');
         const dots = document.querySelectorAll('.carousel-dot');
@@ -209,6 +211,43 @@
 
             cartTotal.textContent = formatPrice(total);
         };
+
+        const sendOrderToWhatsApp = () => {
+
+    if (cart.length === 0) {
+        showMessage("Votre panier est vide.");
+        return;
+    }
+
+    let total = 0;
+
+    let message = `🛍 *Nouvelle commande Luxury by Ess*%0A%0A`;
+
+    cart.forEach((item, index) => {
+
+        const sousTotal = item.price * item.quantity;
+
+        total += sousTotal;
+
+        message +=
+`*${index + 1}. ${item.name}*
+Quantité : ${item.quantity}
+Prix : ${formatPrice(item.price)}
+Sous-total : ${formatPrice(sousTotal)}
+
+`;
+    });
+
+    message +=
+`------------------------
+💰 Total : ${formatPrice(total)}
+
+Je souhaite confirmer cette commande.`;
+
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+
+    window.open(url, "_blank");
+};
 
 
         // --- Hero Carousel Logic (Smooth Fade between Images/Videos) ---
@@ -414,3 +453,5 @@
         window.addToCart = addToCart;
         window.removeFromCart = removeFromCart;
         window.updateQuantity = updateQuantity;
+
+        checkoutBtn.addEventListener("click", sendOrderToWhatsApp);
