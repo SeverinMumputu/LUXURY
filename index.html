@@ -4,266 +4,305 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Luxury by Ess</title>
-    
-    <!-- Tailwind CSS (via CDN pour le fichier unique) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
-    <!-- Google Fonts pour un rendu Premium (Playfair Display pour les titres, Lato pour le texte) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-
-    <!-- Configuration Tailwind pour intégrer vos couleurs -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        paleOrange: '#f8f1e4',
-                        darkCyan: '#033331',
+                        'brand-pale-orange': '#f8f1e4', /* Corrected HEX from f8f1o4 to valid hex */
+                        'brand-dark-cyan': '#033331',
                     },
                     fontFamily: {
-                        serif: ['"Playfair Display"', 'serif'],
-                        sans: ['"Lato"', 'sans-serif'],
+                        sans: ['Montserrat', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    transitionDuration: {
+                        '2000': '2000ms',
                     }
                 }
             }
         }
     </script>
-
+    
 </head>
-<body class="font-sans antialiased overflow-x-hidden">
+<body class="antialiased selection:bg-brand-dark-cyan selection:text-brand-pale-orange">
 
-    <!-- HEADER & NAVIGATION -->
-    <header id="main-header" class="fixed top-0 w-full z-50 transition-all duration-300 bg-darkCyan text-paleOrange py-4">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-            
-            <!-- Menu Hamburger (Mobile & Desktop) -->
-            <button id="menu-btn" class="p-2 hover:opacity-75 transition" aria-label="Ouvrir le menu">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square">
-                    <line x1="3" y1="6" x2="21" y2="6"></line>
-                    <line x1="3" y1="12" x2="21" y2="12"></line>
-                    <line x1="3" y1="18" x2="15" y2="18"></line>
-                </svg>
-            </button>
+    <!-- Header -->
+    <header class="fixed w-full z-50 transition-all duration-300" id="main-header">
+        <!-- Top bar for contrast -->
+        <div class="h-1 w-full bg-brand-dark-cyan"></div>
+        <div class="bg-brand-pale-orange/90 backdrop-blur-md border-b border-brand-dark-cyan/10">
+            <div class="container mx-auto px-4 md:px-8">
+                <div class="flex items-center justify-between h-20 md:h-24">
+                    
+                    <!-- Hamburger Menu (Left) -->
+                    <div class="w-1/3">
+                        <button id="menu-btn" class="group flex flex-col gap-1.5 focus:outline-none" aria-label="Menu">
+                            <span class="w-6 h-0.5 bg-brand-dark-cyan transition-all duration-300 group-hover:w-8"></span>
+                            <span class="w-8 h-0.5 bg-brand-dark-cyan transition-all duration-300"></span>
+                            <span class="w-5 h-0.5 bg-brand-dark-cyan transition-all duration-300 group-hover:w-8"></span>
+                        </button>
+                    </div>
 
-            <!-- Logo -->
-            <a href="#" class="flex items-center justify-center absolute left-1/2 transform -translate-x-1/2">
-                <!-- Utilisation de l'image jointe -->
-                <img src="Luxury LXY loo designed by lisalarvisual Inc ©️ Juin 2026.png" alt="Luxury by Ess Logo" class="h-60 md:h-60 object-contain logo-blend">
-            </a>
+                    <!-- Logo (Center) -->
+                    <div class="w-1/3 flex justify-center">
+                        <a href="#" class="block w-32 md:w-48 transition-transform duration-300 hover:scale-105">
+                            <!-- Using the provided logo file -->
+                            <img src="Luxury LXY loo designed by lisalarvisual Inc ©️ Juin 2026.png" alt="Luxury by Ess Logo" class="w-full h-auto object-contain filter invert opacity-90" style="filter: brightness(0) saturate(100%) invert(13%) sepia(87%) saturate(583%) hue-rotate(134deg) brightness(96%) contrast(100%);">
+                            <!-- Fallback CSS filter to make the white logo dark cyan: #033331 -->
+                        </a>
+                    </div>
 
-            <!-- Panier -->
-            <button id="cart-btn" class="p-2 relative hover:opacity-75 transition" aria-label="Ouvrir le panier">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square">
-                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-                    <line x1="3" y1="6" x2="21" y2="6"></line>
-                    <path d="M16 10a4 4 0 0 1-8 0"></path>
-                </svg>
-                <span id="cart-badge" class="absolute top-0 right-0 bg-paleOrange text-darkCyan text-[10px] font-bold px-1.5 py-0.5 rounded-full hidden">0</span>
-            </button>
+                    <!-- Cart Icon (Right) -->
+                    <div class="w-1/3 flex justify-end">
+                        <button id="cart-btn" class="relative group p-2 focus:outline-none" aria-label="Panier">
+                            <svg class="w-6 h-6 text-brand-dark-cyan transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                            </svg>
+                            <span id="cart-count" class="absolute top-0 right-0 -mt-1 -mr-1 bg-brand-dark-cyan text-brand-pale-orange text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center opacity-0 transition-opacity duration-300">0</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
 
-    <!-- MENU HAMBURGER (Overlay) -->
-    <div id="mobile-menu" class="fixed inset-0 bg-darkCyan text-paleOrange z-[60] transform -translate-x-full transition-transform duration-500 ease-in-out flex flex-col justify-center items-center">
-        <button id="close-menu-btn" class="absolute top-8 right-8 p-2 hover:opacity-75 transition">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square">
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
+    <!-- Fullscreen Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 bg-brand-dark-cyan z-40 flex flex-col justify-center items-center">
+        <button id="close-menu-btn" class="absolute top-8 left-8 text-brand-pale-orange focus:outline-none">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"></path>
             </svg>
         </button>
-        <nav class="flex flex-col items-center space-y-8 text-2xl font-serif tracking-wide">
-            <a href="#collections" class="hover:text-white transition menu-link">Nos Collections</a>
-            <a href="#best-sellers" class="hover:text-white transition menu-link">Prestige</a>
-            <a href="#boutique" class="hover:text-white transition menu-link">La Boutique</a>
-            <a href="#footer" class="hover:text-white transition menu-link">Contact</a>
+        <nav class="flex flex-col items-center space-y-8 text-brand-pale-orange font-serif text-3xl md:text-5xl">
+            <a href="#" class="hover:text-white transition-colors duration-300 relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-0 after:h-0.5 after:bg-brand-pale-orange hover:after:w-full after:transition-all after:duration-300">Nouveautés</a>
+            <a href="#horlogerie" class="hover:text-white transition-colors duration-300 relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-0 after:h-0.5 after:bg-brand-pale-orange hover:after:w-full after:transition-all after:duration-300">Horlogerie</a>
+            <a href="#maroquinerie" class="hover:text-white transition-colors duration-300 relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-0 after:h-0.5 after:bg-brand-pale-orange hover:after:w-full after:transition-all after:duration-300">Maroquinerie</a>
+            <a href="#parfums" class="hover:text-white transition-colors duration-300 relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-0 after:h-0.5 after:bg-brand-pale-orange hover:after:w-full after:transition-all after:duration-300">Parfums</a>
+            <a href="#maison" class="hover:text-white transition-colors duration-300 relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-0 after:h-0.5 after:bg-brand-pale-orange hover:after:w-full after:transition-all after:duration-300">La Maison Ess</a>
         </nav>
     </div>
 
-    <!-- PANIER (Sidebar) -->
-    <div id="cart-sidebar" class="fixed inset-y-0 right-0 w-full sm:w-96 bg-paleOrange border-l border-darkCyan/10 shadow-2xl z-[60] transform translate-x-full transition-transform duration-500 ease-in-out flex flex-col">
-        <div class="p-6 border-b border-darkCyan/10 flex justify-between items-center bg-paleOrange">
-            <h2 class="text-2xl font-serif text-darkCyan">Votre Sélection</h2>
-            <button id="close-cart-btn" class="p-2 text-darkCyan hover:opacity-75 transition">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square">
-                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                    <line x1="6" y1="6" x2="18" y2="18"></line>
+    <!-- Cart Sidebar -->
+    <div id="cart-sidebar" class="fixed inset-y-0 right-0 w-full md:w-96 bg-brand-pale-orange shadow-2xl z-50 flex flex-col border-l border-brand-dark-cyan/20">
+        <div class="flex items-center justify-between p-6 border-b border-brand-dark-cyan/10">
+            <h2 class="font-serif text-2xl text-brand-dark-cyan">Votre Panier</h2>
+            <button id="close-cart-btn" class="text-brand-dark-cyan hover:opacity-70 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
             </button>
         </div>
         
-        <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-6">
-            <!-- Les articles du panier seront injectés ici par JS -->
-            <p class="text-center text-darkCyan/60 italic font-serif mt-10">Votre panier est d'un raffinement absolu, mais vide.</p>
+        <div id="cart-items-container" class="flex-grow overflow-y-auto p-6 space-y-6">
+            <!-- Cart items will be injected here via JS -->
+            <div id="empty-cart-msg" class="flex flex-col items-center justify-center h-full text-brand-dark-cyan/60">
+                <svg class="w-16 h-16 mb-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                </svg>
+                <p class="font-serif text-lg">Votre panier est vide.</p>
+                <p class="text-sm mt-2">Découvrez nos collections.</p>
+            </div>
         </div>
 
-        <div class="p-6 border-t border-darkCyan/10 bg-paleOrange">
-            <div class="flex justify-between items-center mb-6">
-                <span class="text-lg uppercase tracking-wider font-semibold">Total</span>
-                <span id="cart-total" class="text-2xl font-serif font-bold">0,00 €</span>
+        <div class="p-6 border-t border-brand-dark-cyan/10 bg-white">
+            <div class="flex justify-between items-center mb-4 text-brand-dark-cyan font-bold">
+                <span>Total</span>
+                <span id="cart-total" class="font-serif text-xl">0 €</span>
             </div>
-            <button class="w-full bg-darkCyan text-paleOrange py-4 uppercase tracking-widest text-sm font-semibold hover:bg-black transition-colors">
-                Finaliser l'achat
+            <button class="w-full py-4 bg-brand-dark-cyan text-brand-pale-orange font-semibold tracking-widest uppercase text-sm hover:bg-black transition-colors duration-300">
+                Commander
             </button>
         </div>
     </div>
-    <!-- Overlay sombre pour fermer le panier -->
-    <div id="cart-overlay" class="fixed inset-0 bg-black/40 z-[55] hidden transition-opacity"></div>
+    
+    <!-- Overlay for cart -->
+    <div id="cart-overlay" class="fixed inset-0 bg-black/40 z-40 hidden backdrop-blur-sm transition-opacity duration-300"></div>
 
-    <!-- HERO SECTION (Carrousel) -->
-    <section id="hero" class="relative h-screen w-full bg-darkCyan overflow-hidden flex items-center justify-center">
-        <!-- Les slides seront gérés via JavaScript -->
-        <div id="hero-bg" class="absolute inset-0 bg-cover bg-center transition-all duration-1000 ease-in-out" style="background-image: url('https://images.unsplash.com/photo-1523170335258-f5ed11844a49?q=80&w=2080&auto=format&fit=crop');"></div>
-        <div class="absolute inset-0 bg-darkCyan/50 mix-blend-multiply"></div> <!-- Filtre assombrissant -->
+    <!-- Hero Section -->
+    <section class="relative h-screen w-full overflow-hidden bg-brand-dark-cyan">
         
-        <div class="relative z-10 text-center px-4 max-w-4xl">
-            <h3 id="hero-subtitle" class="text-paleOrange text-sm md:text-base uppercase tracking-[0.3em] mb-4 opacity-0 fade-in" style="animation-delay: 0.2s;">Horlogerie d'exception</h3>
-            <h1 id="hero-title" class="text-4xl md:text-6xl lg:text-7xl font-serif text-paleOrange mb-6 leading-tight opacity-0 fade-in" style="animation-delay: 0.4s;">L'Élégance à chaque seconde</h1>
-            <p id="hero-desc" class="text-paleOrange/80 md:text-lg mb-10 font-light max-w-2xl mx-auto opacity-0 fade-in" style="animation-delay: 0.6s;">Sublimez votre style au quotidien avec nos pièces rares et de qualité supérieure.</p>
-            <a href="#boutique" class="inline-block border border-paleOrange text-paleOrange px-8 py-4 uppercase tracking-widest text-sm hover:bg-paleOrange hover:text-darkCyan transition-colors duration-300 opacity-0 fade-in" style="animation-delay: 0.8s;">
-                Découvrir la collection
-            </a>
+        <!-- Media Slides -->
+        <div id="hero-carousel" class="absolute inset-0">
+            
+            <!-- Slide 1: Video (Watch) -->
+            <div class="hero-slide active">
+                <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover">
+                    <!-- Placeholder video from coverr.co or similar free luxury abstract -->
+                    <source src="video_2.mp4" type="video/mp4">
+                </video>
+                <div class="hero-overlay absolute inset-0"></div>
+                <div class="absolute inset-0 flex flex-col justify-center items-center text-center px-4 z-20">
+                    <span class="text-brand-pale-orange/80 uppercase tracking-[0.3em] text-xs md:text-sm mb-4">Nouvelle Collection</span>
+                    <h2 class="font-serif text-4xl md:text-6xl lg:text-7xl text-brand-pale-orange mb-6 drop-shadow-lg">Le Temps Sublimé</h2>
+                    <p class="text-brand-pale-orange/90 max-w-lg md:text-lg font-light mb-10">L'excellence horlogère à son apogée. Découvrez des pièces d'exception façonnées pour l'éternité.</p>
+                    <a href="#horlogerie" class="inline-block py-3 px-10 border border-brand-pale-orange text-brand-pale-orange hover:bg-brand-pale-orange hover:text-brand-dark-cyan transition-all duration-500 uppercase tracking-widest text-sm">Découvrir</a>
+                </div>
+            </div>
+
+            <!-- Slide 2: Image (Leather) -->
+            <div class="hero-slide">
+                <img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?q=80&w=2076&auto=format&fit=crop" alt="Luxury Leather Bag" class="absolute inset-0 w-full h-full object-cover transform scale-105" style="animation: slowZoom 20s infinite alternate ease-in-out;">
+                <div class="hero-overlay absolute inset-0"></div>
+                <div class="absolute inset-0 flex flex-col justify-center items-center text-center px-4 z-20">
+                    <span class="text-brand-pale-orange/80 uppercase tracking-[0.3em] text-xs md:text-sm mb-4">Maroquinerie Fine</span>
+                    <h2 class="font-serif text-4xl md:text-6xl lg:text-7xl text-brand-pale-orange mb-6 drop-shadow-lg">L'Art du Cuir</h2>
+                    <p class="text-brand-pale-orange/90 max-w-lg md:text-lg font-light mb-10">Un savoir-faire artisanal inégalé pour des créations intemporelles qui vous accompagnent avec élégance.</p>
+                    <a href="#maroquinerie" class="inline-block py-3 px-10 border border-brand-pale-orange text-brand-pale-orange hover:bg-brand-pale-orange hover:text-brand-dark-cyan transition-all duration-500 uppercase tracking-widest text-sm">Explorer</a>
+                </div>
+            </div>
+
+            <!-- Slide 3: Video (Perfume/Abstract) -->
+            <div class="hero-slide">
+                <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover">
+                     <!-- Placeholder video -->
+                    <source src="video_1.mp4" type="video/mp4">
+                </video>
+                <div class="hero-overlay absolute inset-0"></div>
+                <!--<div class="absolute inset-0 flex flex-col justify-center items-center text-center px-4 z-20">
+                    <span class="text-brand-pale-orange/80 uppercase tracking-[0.3em] text-xs md:text-sm mb-4">Essences Rares</span>
+                    <h2 class="font-serif text-4xl md:text-6xl lg:text-7xl text-brand-pale-orange mb-6 drop-shadow-lg">Sillage Envoûtant</h2>
+                    <p class="text-brand-pale-orange/90 max-w-lg md:text-lg font-light mb-10">Des fragrances captivantes créées par les plus grands nez pour révéler votre signature olfactive.</p>
+                    <a href="#parfums" class="inline-block py-3 px-10 border border-brand-pale-orange text-brand-pale-orange hover:bg-brand-pale-orange hover:text-brand-dark-cyan transition-all duration-500 uppercase tracking-widest text-sm">Sentir</a>
+                </div>
+            </div>-->
         </div>
 
-        <!-- Pagination Carrousel -->
-        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex space-x-3 z-10" id="hero-pagination">
-            <!-- Injecté par JS -->
+        <!-- Carousel Pagination/Controls -->
+        <div class="absolute bottom-12 w-full z-30 flex justify-center items-center gap-4">
+            <button class="carousel-dot w-12 h-0.5 bg-brand-pale-orange opacity-100 transition-opacity duration-300" data-slide="0" aria-label="Slide 1"></button>
+            <button class="carousel-dot w-8 h-0.5 bg-brand-pale-orange opacity-40 hover:opacity-80 transition-all duration-300" data-slide="1" aria-label="Slide 2"></button>
+            <button class="carousel-dot w-8 h-0.5 bg-brand-pale-orange opacity-40 hover:opacity-80 transition-all duration-300" data-slide="2" aria-label="Slide 3"></button>
+        </div>
+        
+        <!-- Scroll down indicator -->
+        <div class="absolute bottom-6 w-full z-30 flex justify-center">
+            <svg class="w-6 h-6 text-brand-pale-orange animate-bounce opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
         </div>
     </section>
 
-    <!-- SECTION : EXPOSITION DES MEILLEURS PRODUITS -->
-    <section id="best-sellers" class="py-24 bg-paleOrange">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Filter & Collection Section -->
+    <section class="py-24 bg-brand-pale-orange" id="collections">
+        <div class="container mx-auto px-4 md:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-serif text-darkCyan mb-4">L'Excellence Recommandée</h2>
-                <div class="w-16 h-0.5 bg-darkCyan mx-auto mb-4"></div>
-                <p class="text-darkCyan/70">Nos pièces maîtresses les plus convoitées par nos clients prestigieux.</p>
+                <h2 class="font-serif text-3xl md:text-5xl text-brand-dark-cyan mb-4">L'Écrin de l'Excellence</h2>
+                <div class="w-16 h-0.5 bg-brand-dark-cyan mx-auto mb-6"></div>
+                <p class="text-brand-dark-cyan/70 max-w-2xl mx-auto font-light">Sélectionnez le meilleur du raffinement pour sublimer votre style au quotidien. Découvrez nos collections par catégorie.</p>
             </div>
 
-            <!-- Carrousel horizontal premium -->
-            <div class="relative group">
-                <button id="scroll-left" class="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 md:-translate-x-8 z-10 p-3 bg-white shadow-lg text-darkCyan rounded-full opacity-0 group-hover:opacity-100 transition-opacity disabled:opacity-0">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-                </button>
-                
-                <div id="premium-carousel" class="flex overflow-x-auto hide-scrollbar gap-8 snap-x snap-mandatory scroll-smooth pb-8">
-                    <!-- Les produits Prestige seront injectés ici par JS -->
-                </div>
-
-                <button id="scroll-right" class="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 md:translate-x-8 z-10 p-3 bg-white shadow-lg text-darkCyan rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION : BOUTIQUE & FILTRAGE DYNAMIQUE -->
-    <section id="boutique" class="py-24 bg-darkCyan text-paleOrange">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-12 border-b border-paleOrange/20 pb-8">
-                <div>
-                    <h2 class="text-3xl md:text-5xl font-serif mb-4">La Boutique</h2>
-                    <p class="text-paleOrange/70 max-w-xl font-light">Une sélection méticuleuse d'horlogerie, maroquinerie, bijoux, parfums, lunettes et technologies de luxe.</p>
-                </div>
-                
-                <!-- Boutons de filtre -->
-                <div class="mt-8 md:mt-0 flex flex-wrap gap-4" id="filter-buttons">
-                    <button class="filter-btn active border-b border-paleOrange pb-1 uppercase tracking-widest text-xs font-semibold" data-filter="all">Tout</button>
-                    <button class="filter-btn text-paleOrange/50 hover:text-paleOrange transition pb-1 uppercase tracking-widest text-xs" data-filter="horlogerie">Horlogerie</button>
-                    <button class="filter-btn text-paleOrange/50 hover:text-paleOrange transition pb-1 uppercase tracking-widest text-xs" data-filter="maroquinerie">Maroquinerie</button>
-                    <button class="filter-btn text-paleOrange/50 hover:text-paleOrange transition pb-1 uppercase tracking-widest text-xs" data-filter="parfums">Parfums</button>
-                    <button class="filter-btn text-paleOrange/50 hover:text-paleOrange transition pb-1 uppercase tracking-widest text-xs" data-filter="accessoires">Accessoires</button>
-                </div>
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-4 mb-16" id="filter-buttons">
+                <button class="filter-btn active py-2 px-6 border-b-2 border-brand-dark-cyan text-brand-dark-cyan font-medium uppercase tracking-wider text-sm transition-all" data-filter="all">Tout</button>
+                <button class="filter-btn py-2 px-6 border-b-2 border-transparent text-brand-dark-cyan/60 hover:text-brand-dark-cyan hover:border-brand-dark-cyan/30 font-medium uppercase tracking-wider text-sm transition-all" data-filter="horlogerie">Horlogerie</button>
+                <button class="filter-btn py-2 px-6 border-b-2 border-transparent text-brand-dark-cyan/60 hover:text-brand-dark-cyan hover:border-brand-dark-cyan/30 font-medium uppercase tracking-wider text-sm transition-all" data-filter="maroquinerie">Maroquinerie</button>
+                <button class="filter-btn py-2 px-6 border-b-2 border-transparent text-brand-dark-cyan/60 hover:text-brand-dark-cyan hover:border-brand-dark-cyan/30 font-medium uppercase tracking-wider text-sm transition-all" data-filter="accessoires">Accessoires</button>
             </div>
 
-            <!-- Grille de produits -->
-            <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Les produits seront injectés ici via JS -->
+            <!-- Product Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16" id="product-grid">
+                <!-- Products will be generated by JS -->
+            </div>
+            
+            <div class="text-center mt-20">
+                <button class="inline-block py-4 px-12 bg-transparent border border-brand-dark-cyan text-brand-dark-cyan hover:bg-brand-dark-cyan hover:text-brand-pale-orange transition-all duration-300 uppercase tracking-widest text-sm font-semibold">Voir tout le catalogue</button>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER PREMIUM -->
-    <footer id="footer" class="bg-black text-paleOrange pt-20 pb-10 border-t border-darkCyan">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Best Products (Animated Fluid Exposition) -->
+    <section class="py-24 bg-white overflow-hidden relative">
+        <div class="container mx-auto px-4 md:px-8 mb-12 flex justify-between items-end">
+            <div>
+                <span class="text-brand-dark-cyan/60 uppercase tracking-[0.2em] text-xs mb-2 block">La Sélection</span>
+                <h2 class="font-serif text-3xl md:text-5xl text-brand-dark-cyan">Pièces Maîtresses</h2>
+            </div>
+            <div class="hidden md:flex gap-4">
+                <!-- Custom navigation for scroll -->
+                <button id="scroll-left" class="w-12 h-12 rounded-full border border-brand-dark-cyan flex items-center justify-center text-brand-dark-cyan hover:bg-brand-dark-cyan hover:text-white transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 19l-7-7 7-7"></path></svg>
+                </button>
+                <button id="scroll-right" class="w-12 h-12 rounded-full border border-brand-dark-cyan flex items-center justify-center text-brand-dark-cyan hover:bg-brand-dark-cyan hover:text-white transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Horizontal Scroll Container -->
+        <div class="pl-4 md:pl-8 lg:pl-[max(2rem,calc((100vw-1280px)/2+2rem))]">
+            <div id="best-products-scroll" class="scroll-container gap-8 pb-12 pt-4">
+                <!-- Items injected by JS -->
+            </div>
+        </div>
+        
+        <!-- Pagination dots for mobile -->
+        <div class="flex justify-center gap-2 mt-4 md:hidden" id="best-products-pagination">
+            <!-- Dots injected by JS -->
+        </div>
+    </section>
+
+    <!-- Premium Footer -->
+    <footer class="bg-brand-dark-cyan text-brand-pale-orange pt-24 pb-12 border-t-4 border-brand-pale-orange/20">
+        <div class="container mx-auto px-4 md:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-                <!-- Col 1 : Marque -->
-                <div class="flex flex-col items-start space-y-6">
-                    <img src="Luxury LXY loo designed by lisalarvisual Inc ©️ Juin 2026.png" alt="Luxury by Ess Logo" class="h-30 object-contain logo-blend">
-                </div>
-
-                 <p class="text-sm text-paleOrange/70 font-light">
-                        Nous sélectionnons le meilleur du raffinement pour sublimer votre style au quotidien. Service de livraison sécurisé partout dans le monde.
-                    </p>
-
-                <!-- Col 2 : Liens rapides -->
-                <div>
-                    <h4 class="text-lg font-serif mb-6 tracking-wide uppercase">Découvrir</h4>
-                    <ul class="space-y-4 text-sm font-light text-paleOrange/70">
-                        <li><a href="#" class="hover:text-paleOrange transition">Nouvelles Collections</a></li>
-                        <li><a href="#" class="hover:text-paleOrange transition">Horlogerie</a></li>
-                        <li><a href="#" class="hover:text-paleOrange transition">Maroquinerie</a></li>
-                        <li><a href="#" class="hover:text-paleOrange transition">Éditions Limitées</a></li>
-                    </ul>
-                </div>
                 
-                <!-- Col 3 : Service Client 
-                <div>
-                    <h4 class="text-lg font-serif mb-6 tracking-wide uppercase">Assistance</h4>
-                    <ul class="space-y-4 text-sm font-light text-paleOrange/70">
-                        <li><a href="#" class="hover:text-paleOrange transition">Contactez-nous</a></li>
-                        <li><a href="#" class="hover:text-paleOrange transition">Livraison Sécurisée</a></li>
-                        <li><a href="#" class="hover:text-paleOrange transition">Retours & Échanges</a></li>
-                        <li><a href="#" class="hover:text-paleOrange transition">Entretien & Garanties</a></li>
-                    </ul>
-                </div>-->
+                <!-- Col 1: Brand -->
+                <div class="space-y-6">
+                    <img src="Luxury LXY loo designed by lisalarvisual Inc ©️ Juin 2026.png" alt="Luxury by Ess Logo" class="h-30 w-auto object-contain filter brightness-0 invert">
+                    <p class="font-light text-sm leading-relaxed text-brand-pale-orange/80">
+                        Notre mission est de vous proposer des pièces rares de qualité supérieure, avec un service de livraison sécurisé partout dans le monde.
+                    </p>
+                </div>
 
-                <!-- Col 4 : Newsletter & Réseaux sociaux 
+                <!-- Col 3: Legal & About -->
                 <div>
-                    <h4 class="text-lg font-serif mb-6 tracking-wide uppercase">Le Club LXY</h4>
-                    <p class="text-sm font-light text-paleOrange/70 mb-4">Inscrivez-vous pour un accès anticipé aux pièces rares.</p>
-                    <form class="flex border-b border-paleOrange/30 pb-2 mb-8">
-                        <input type="email" placeholder="Votre courriel" class="bg-transparent w-full focus:outline-none text-sm placeholder-paleOrange/40">
-                        <button type="submit" class="uppercase tracking-widest text-xs font-bold hover:text-white transition">Joindre</button>
-                    </form>-->
-                    
-                    <!-- Icônes Réseaux Sociaux -->
+                    <h4 class="font-serif text-xl mb-6 tracking-wide">La Maison</h4>
+                    <ul class="space-y-4 font-light text-sm text-brand-pale-orange/80">
+                        <li><a href="#" class="hover:text-white transition-colors">L'Histoire Ess</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Boutiques</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Carrières</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Mentions Légales</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Politique de Confidentialité</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Newsletter & Socials -->
+                <div>
                     <div class="flex space-x-6">
-                        <!-- Instagram -->
-                        <a href="#" class="text-paleOrange/70 hover:text-paleOrange transition" aria-label="Instagram">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        <!-- Instagram SVG -->
+                        <a href="#" aria-label="Instagram" class="text-brand-pale-orange/80 hover:text-white transition-transform hover:-translate-y-1">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
                             </svg>
                         </a>
-                        <!-- Facebook -->
-                        <a href="#" class="text-paleOrange/70 hover:text-paleOrange transition" aria-label="Facebook">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                        <!-- Facebook SVG -->
+                        <a href="#" aria-label="Facebook" class="text-brand-pale-orange/80 hover:text-white transition-transform hover:-translate-y-1">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                             </svg>
                         </a>
-                        <!-- Tiktok -->
-                        <a href="#" class="text-paleOrange/70 hover:text-paleOrange transition" aria-label="TikTok">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
+                        <!-- TikTok SVG -->
+                        <a href="#" aria-label="TikTok" class="text-brand-pale-orange/80 hover:text-white transition-transform hover:-translate-y-1">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93v7.2c0 1.96-.5 3.96-1.72 5.5-1.43 1.81-3.71 2.9-6.03 2.87-2.6-.04-5.11-1.35-6.5-3.52-1.33-2.07-1.57-4.75-.63-6.99 1.16-2.74 3.93-4.54 6.89-4.57.17 0 .34 0 .51.02v4.06c-2.3.06-4.5 1.83-5.07 4.09-.54 2.11.4 4.38 2.29 5.48 1.9.1 4.06-.52 5.09-2.3 1.05-1.72 1.02-3.83 1.02-5.78V.02h2.08z"/>
                             </svg>
                         </a>
                     </div>
                 </div>
             </div>
             
-            <div class="border-t border-paleOrange/20 pt-8 flex flex-col md:flex-row justify-between items-center text-xs font-light text-paleOrange/50">
+            <div class="border-t border-brand-pale-orange/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs font-light text-brand-pale-orange/50">
                 <p>&copy; 2026 Luxury by Ess. Tous droits réservés.</p>
-                <div class="space-x-4 mt-4 md:mt-0">
-                    <a href="#" class="hover:text-paleOrange transition">Designed by Mercato</a>
-                </div>
+                <p class="mt-4 md:mt-0">Designed by Mercato.</p>
             </div>
         </div>
     </footer>
 
-    <!-- JAVASCRIPT LOGIC -->
     <script src="script.js"></script>
 </body>
 </html>

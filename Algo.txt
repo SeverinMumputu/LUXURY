@@ -13,13 +13,18 @@ Un site épuré qui repond à un design premium en fusionnant les couleurs :
 Les composants ou modules indispensables à retrouver dans le site :
 - Header avec menu hamburger premium
 - Panier dans le header (une icône svg du panier dans le header. Le panier doit être logiquement bien géré afin d'assurer le bon fonctionnement du panier)
-- Hero (contenant un carroussel des images avec pagination comprenant un texte descriptif de la collection)
+- Hero (contenant un carroussel des vidéos et images avec pagination comprenant un texte descriptif de la collection)
 - Filtrage dynamique des données(une section où on retrouve les produits regroupés par section)
 - Bouton "ajouter au panier" dans chaque produit (pour permettre le transfert à chaque clic sur dans le panier facilitant l'achat)
-- Exposition de meilleurs produits (à l'aide d'une animation carroussel premium de défilement)
+- Exposition fluide de meilleurs produits (à l'aide d'une animation premium de transition qui défile de manière automatique avec une pagination)
 - Footer premium en colonne et icônes svg des réseaux sociaux (Facebook, Tiktok, instagram)
-- Bie placer le logo de la marque ajoutée comme pièce-joint dans le header et footer
+- Bien placer le logo de la marque au centre dans le header ajouté comme pièce-joint
 - Un site responsive pour toutes les résolutions d'écrans
+
+Pour une boutique de luxe comme Luxury by Ess, il est encore plus élégant de gérer un fondu entre les médias (image ↔ vidéo)
+au lieu de masquer brutalement l'un puis d'afficher l'autre.
+
+Le résultat est très haut de gamme : les images se fondent naturellement vers les vidéos et inversement, comme sur les sites de grandes maisons de luxe telles que Rolex ou Louis Vuitton.
 
 L'architecture et le design doivent reposer sur ces technologies :
 - HTML 5 

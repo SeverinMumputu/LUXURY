@@ -1,35 +1,97 @@
 
-        /* Styles personnalisés pour parfaire le design */
+        /* Custom Styles for Luxury Feel */
         body {
             background-color: #f8f1e4;
             color: #033331;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
         }
 
-        /* Masquer les barres de défilement pour les carrousels */
-        .hide-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .hide-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
+        h1, h2, h3, h4, h5, h6, .font-serif {
+            font-family: 'Playfair Display', serif;
         }
 
-        /* Animations fluides */
-        .fade-in {
-            animation: fadeIn 0.8s ease-in-out forwards;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Classe pour l'overlay du Hero avec transition fluide */
+        /* Hero Carousel Transitions */
         .hero-slide {
-            transition: opacity 1s ease-in-out;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
         }
-        
-        /* Astuce pour que le logo noir s'intègre parfaitement sur le fond sombre */
-        .logo-blend {
-            mix-blend-mode: lighten;
+        .hero-slide.active {
+            opacity: 1;
+            z-index: 10;
+        }
+
+        /* Smooth video/image fade overlay */
+        .hero-overlay {
+            background: linear-gradient(to top, rgba(3, 51, 49, 0.7) 0%, rgba(3, 51, 49, 0.2) 50%, rgba(3, 51, 49, 0.6) 100%);
+        }
+
+        /* Hide scrollbar for clean look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f8f1e4;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #033331;
+            border-radius: 4px;
+        }
+
+        /* Product Card Hover Effect */
+        .product-card {
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(3, 51, 49, 0.15);
+        }
+        .product-image-container {
+            overflow: hidden;
+        }
+        .product-image {
+            transition: transform 0.8s ease;
+        }
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+
+        /* Cart Slide-in */
+        #cart-sidebar {
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        #cart-sidebar.open {
+            transform: translateX(0);
+        }
+
+        /* Mobile Menu */
+        #mobile-menu {
+            transform: translateY(-100%);
+            transition: transform 0.4s ease-in-out;
+        }
+        #mobile-menu.open {
+            transform: translateY(0);
+        }
+
+        /* Continuous Scroll for "Best Products" */
+        .scroll-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; /* Firefox */
+        }
+        .scroll-container::-webkit-scrollbar {
+            display: none; /* Safari and Chrome */
+        }
+        .scroll-item {
+            flex: 0 0 auto;
+            scroll-snap-align: start;
         }
