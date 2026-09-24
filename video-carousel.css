@@ -1,0 +1,446 @@
+/* =========================================================
+   Luxury by Ess — Immersive Reels Video Carousel
+
+   VERSION FLUIDE — SCROLL VERTICAL PRIORITAIRE
+   ========================================================= */
+
+.video-reels-section {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.video-reels-shell {
+    width: 100%;
+    overflow: visible;
+}
+
+/* =========================================================
+   TRACK HORIZONTAL
+   ========================================================= */
+
+.video-reels-track {
+    display: flex;
+    gap: clamp(14px, 2vw, 28px);
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0
+        max(1rem, calc((100vw - 1280px) / 2 + 2rem))
+        1.25rem;
+
+    scroll-snap-type: x proximity;
+    scroll-padding-inline:
+        max(1rem, calc((100vw - 1280px) / 2 + 2rem));
+
+    overscroll-behavior-x: contain;
+    overscroll-behavior-y: auto;
+
+    touch-action: auto;
+
+    -webkit-overflow-scrolling: touch;
+
+    scroll-behavior: smooth;
+
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.video-reels-track::-webkit-scrollbar {
+    display: none;
+}
+
+/* =========================================================
+   CARTE
+   ========================================================= */
+
+.video-reel-card {
+    position: relative;
+
+    /* TAILLE PRINCIPALE — légèrement réduite */
+    flex: 0 0 min(72vw, 430px);
+
+    aspect-ratio: 9 / 16;
+    scroll-snap-align: center;
+    border-radius: 22px;
+    overflow: hidden;
+    background: #033331;
+
+    box-shadow:
+        0 18px 45px rgba(3, 51, 49, 0.12);
+
+    transform: scale(0.97);
+    opacity: 0.86;
+
+    transition:
+        transform 280ms ease,
+        opacity 280ms ease,
+        box-shadow 280ms ease;
+
+    will-change: transform, opacity;
+}
+
+.video-reel-card.is-active {
+    transform: scale(1);
+    opacity: 1;
+
+    box-shadow:
+        0 22px 50px rgba(3, 51, 49, 0.18);
+}
+
+/* =========================================================
+   VIDEO
+   ========================================================= */
+
+.video-reel-media,
+.video-reel {
+    width: 100%;
+    height: 100%;
+}
+
+.video-reel-media {
+    position: relative;
+    overflow: hidden;
+    background: #033331;
+}
+
+.video-reel {
+    display: block;
+    object-fit: cover;
+}
+
+/* =========================================================
+   OVERLAY
+   ========================================================= */
+
+.video-reel-gradient {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(3, 51, 49, 0.52),
+            transparent 26%
+        ),
+        linear-gradient(
+            to top,
+            rgba(3, 51, 49, 0.78),
+            transparent 52%
+        );
+}
+
+/* =========================================================
+   TOPBAR
+   ========================================================= */
+
+.video-reel-topbar {
+    position: absolute;
+    inset: 18px 18px auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    color: #f8f1e4;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 9px;
+
+    pointer-events: none;
+}
+
+.video-reel-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 34px;
+    height: 34px;
+    padding: 0 8px;
+
+    border:
+        1px solid rgba(248, 241, 228, 0.55);
+
+    border-radius: 999px;
+
+    backdrop-filter: blur(8px);
+
+    background:
+        rgba(3, 51, 49, 0.15);
+}
+
+.video-reel-category {
+    opacity: 0.82;
+}
+
+/* =========================================================
+   ACTIONS
+   ========================================================= */
+
+.video-reel-actions {
+    position: absolute;
+    right: 16px;
+    bottom: 112px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    z-index: 3;
+}
+
+.video-reel-control {
+    width: 42px;
+    height: 42px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #f8f1e4;
+
+    border:
+        1px solid rgba(248, 241, 228, 0.5);
+
+    border-radius: 999px;
+
+    background:
+        rgba(3, 51, 49, 0.35);
+
+    backdrop-filter: blur(9px);
+
+    transition:
+        transform 180ms ease,
+        background 180ms ease,
+        border-color 180ms ease;
+
+    touch-action: manipulation;
+}
+
+.video-reel-control:hover,
+.video-reel-control:focus-visible {
+    transform: scale(1.06);
+
+    background:
+        rgba(3, 51, 49, 0.75);
+
+    border-color: #f8f1e4;
+    outline: none;
+}
+
+.video-reel-control svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* =========================================================
+   COPY
+   ========================================================= */
+
+.video-reel-copy {
+    position: absolute;
+    left: 20px;
+    right: 68px;
+    bottom: 22px;
+
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* =========================================================
+   CONTROLES
+   ========================================================= */
+
+.video-reels-controls {
+    max-width: 1280px;
+}
+
+.video-reels-arrow {
+    width: 46px;
+    height: 46px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #033331;
+
+    border:
+        1px solid rgba(3, 51, 49, 0.55);
+
+    border-radius: 999px;
+
+    transition:
+        background 180ms ease,
+        color 180ms ease,
+        transform 180ms ease;
+
+    touch-action: manipulation;
+}
+
+.video-reels-arrow:hover,
+.video-reels-arrow:focus-visible {
+    background: #033331;
+    color: #f8f1e4;
+    transform: translateY(-2px);
+    outline: none;
+}
+
+.video-reels-arrow:disabled {
+    opacity: 0.28;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* =========================================================
+   PROGRESS
+   ========================================================= */
+
+.video-reels-progress {
+    height: 2px;
+    width: 100%;
+
+    background:
+        rgba(3, 51, 49, 0.14);
+
+    overflow: hidden;
+}
+
+.video-reels-progress span {
+    display: block;
+    height: 100%;
+    width: 25%;
+
+    background: #033331;
+
+    transform-origin: left center;
+
+    transition:
+        width 250ms ease;
+}
+
+/* =========================================================
+   COUNTER
+   ========================================================= */
+
+.video-reels-counter {
+    min-width: 58px;
+
+    color: #033331;
+
+    display: flex;
+    justify-content: flex-end;
+    gap: 7px;
+
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+}
+
+/* =========================================================
+   DESKTOP
+   ========================================================= */
+
+@media (min-width: 768px) {
+
+    .video-reel-card {
+        /*
+         * Réduction de 30 % uniquement sur desktop.
+         *
+         * Avant :
+         * clamp(270px, 27vw, 385px)
+         *
+         * Après -30 % :
+         * clamp(189px, 19vw, 270px)
+         */
+        flex-basis:
+            clamp(189px, 19vw, 270px);
+    }
+
+    .video-reels-track {
+        scroll-padding-inline:
+            max(
+                2rem,
+                calc((100vw - 1280px) / 2 + 2rem)
+            );
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 767px) {
+
+    .video-reels-heading {
+        padding-inline: 0.25rem;
+    }
+
+    .video-reel-card {
+        /*
+         * AVANT :
+         * min(82vw, 380px)
+         *
+         * APRÈS :
+         * réduction légère en responsive
+         */
+        flex-basis:
+            min(76vw, 350px);
+
+        border-radius: 18px;
+    }
+
+    .video-reels-track {
+        padding-left:
+            max(
+                1rem,
+                calc((100vw - min(76vw, 350px)) / 2)
+            );
+
+        padding-right:
+            max(
+                1rem,
+                calc((100vw - min(76vw, 350px)) / 2)
+            );
+
+        scroll-padding-inline:
+            max(
+                1rem,
+                calc((100vw - min(76vw, 350px)) / 2)
+            );
+
+        scroll-snap-type: x proximity;
+
+        touch-action: auto;
+    }
+
+    .video-reels-controls {
+        padding-inline: 1rem;
+    }
+
+    .video-reels-arrow {
+        width: 42px;
+        height: 42px;
+    }
+}
+
+/* =========================================================
+   RÉDUCTION DES ANIMATIONS
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .video-reel-card,
+    .video-reel-control,
+    .video-reels-arrow,
+    .video-reels-progress span {
+        transition: none;
+    }
+
+    .video-reels-track {
+        scroll-behavior: auto;
+    }
+}

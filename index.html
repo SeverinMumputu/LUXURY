@@ -6,6 +6,7 @@
     <title>Luxury by Ess</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="video-carousel.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <script>
@@ -189,11 +190,386 @@
         </div>
     </section>
 
+        <!-- Immersive Reels Video Carousel -->
+    <section id="video-reels" class="video-reels-section py-20 md:py-28 bg-brand-pale-orange overflow-hidden">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="video-reels-heading flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-10 md:mb-14">
+                <div>
+                    <span class="text-brand-dark-cyan/60 uppercase tracking-[0.25em] text-[10px] md:text-xs mb-3 block">
+                        L'Expérience Luxury
+                    </span>
+                    <h2 class="font-serif text-3xl md:text-5xl text-brand-dark-cyan leading-tight">
+                        La touche luxueuse pour votre style
+                    </h2>
+                    <div class="w-16 h-0.5 bg-brand-dark-cyan mt-5"></div>
+                </div>
+
+                <div class="max-w-xl">
+                    <p class="text-brand-dark-cyan/70 font-light leading-relaxed text-sm md:text-base">
+                        Découvrez nos services dans un format reels,
+                        avec une présentation fluide et élégante.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="video-reels-shell">
+            <div
+                id="video-reels-track"
+                class="video-reels-track"
+                aria-label="Présentation vidéo des produits"
+            >
+                <!--
+                    Remplacez les src par vos vidéos produits.
+                    Format recommandé : vertical 9:16, MP4 H.264.
+                -->
+
+                <article class="video-reel-card is-active" data-video-index="0">
+                    <div class="video-reel-media">
+                        <video
+                            class="video-reel"
+                            src="video_essai.mp4"
+                            autoplay
+                            muted
+                            loop
+                            playsinline
+                            preload="metadata"
+                            aria-label="Présentation vidéo de la collection horlogerie"
+                        ></video>
+
+                        <div class="video-reel-gradient"></div>
+
+                        <div class="video-reel-topbar">
+                            <span class="video-reel-number">01</span>
+                            <span class="video-reel-category">Horlogerie</span>
+                        </div>
+
+                        <div class="video-reel-actions">
+                            <button
+                                type="button"
+                                class="video-reel-control js-video-play"
+                                aria-label="Mettre la vidéo en pause"
+                                title="Lecture / pause"
+                            >
+                                <svg class="icon-play hidden" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path d="M8 5.14v13.72a1 1 0 0 0 1.5.86l10.29-6.86a1 1 0 0 0 0-1.72L9.5 4.28A1 1 0 0 0 8 5.14Z"/>
+                                </svg>
+                                <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path d="M7 5.5A1.5 1.5 0 0 1 8.5 4h1A1.5 1.5 0 0 1 11 5.5v13A1.5 1.5 0 0 1 9.5 20h-1A1.5 1.5 0 0 1 7 18.5v-13Zm6 0A1.5 1.5 0 0 1 14.5 4h1A1.5 1.5 0 0 1 17 5.5v13a1.5 1.5 0 0 1-1.5 1.5h-1a1.5 1.5 0 0 1-1.5-1.5v-13Z"/>
+                                </svg>
+                            </button>
+
+                            <button
+                                type="button"
+                                class="video-reel-control js-video-mute"
+                                aria-label="Activer le son"
+                                title="Activer / couper le son"
+                            >
+                                <svg class="icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M11 5 6.5 9H3v6h3.5L11 19V5Zm4.5 4 5 5m0-5-5 5"/>
+                                </svg>
+                                <svg class="icon-unmuted hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M11 5 6.5 9H3v6h3.5L11 19V5Zm4.5 3.5a5 5 0 0 1 0 7m2-9.5a9 9 0 0 1 0 12"/>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div class="video-reel-copy">
+                            <p class="text-brand-pale-orange/80 text-[10px] uppercase tracking-[0.22em] mb-2">
+                                Le Temps Sublimé
+                            </p>
+                            <h3 class="font-serif text-2xl md:text-3xl text-brand-pale-orange">
+                                Procurez-vous des cadeaux
+                            </h3>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="video-reel-card" data-video-index="1">
+                    <div class="video-reel-media">
+                        <video
+                            class="video-reel"
+                            src="reel_1.mp4"
+                            muted
+                            loop
+                            playsinline
+                            preload="metadata"
+                            aria-label="Présentation vidéo de la collection parfums"
+                        ></video>
+
+                        <div class="video-reel-gradient"></div>
+
+                        <div class="video-reel-topbar">
+                            <span class="video-reel-number">02</span>
+                            <span class="video-reel-category">Horlogerie</span>
+                        </div>
+
+                        <div class="video-reel-actions">
+                            <button type="button" class="video-reel-control js-video-play" aria-label="Lire la vidéo" title="Lecture / pause">
+                                <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path d="M8 5.14v13.72a1 1 0 0 0 1.5.86l10.29-6.86a1 1 0 0 0 0-1.72L9.5 4.28A1 1 0 0 0 8 5.14Z"/>
+                                </svg>
+                                <svg class="icon-pause hidden" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path d="M7 5.5A1.5 1.5 0 0 1 8.5 4h1A1.5 1.5 0 0 1 11 5.5v13A1.5 1.5 0 0 1 9.5 20h-1A1.5 1.5 0 0 1 7 18.5v-13Zm6 0A1.5 1.5 0 0 1 14.5 4h1A1.5 1.5 0 0 1 17 5.5v13a1.5 1.5 0 0 1-1.5 1.5h-1a1.5 1.5 0 0 1-1.5-1.5v-13Z"/>
+                                </svg>
+                            </button>
+                            <button type="button" class="video-reel-control js-video-mute" aria-label="Activer le son" title="Activer / couper le son">
+                                <svg class="icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M11 5 6.5 9H3v6h3.5L11 19V5Zm4.5 4 5 5m0-5-5 5"/>
+                                </svg>
+                                <svg class="icon-unmuted hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M11 5 6.5 9H3v6h-3.5L11 19V5Zm4.5 3.5a5 5 0 0 1 0 7m2-9.5a9 9 0 0 1 0 12"/>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div class="video-reel-copy">
+                            <p class="text-brand-pale-orange/80 text-[10px] uppercase tracking-[0.22em] mb-2">
+                                Faites-vous plaisir
+                            </p>
+                            <h3 class="font-serif text-2xl md:text-3xl text-brand-pale-orange">
+                                Offrez-vous le luxe.
+                            </h3>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="video-reel-card" data-video-index="2">
+                    <div class="video-reel-media">
+                        <video
+                            class="video-reel"
+                            src="reel_4.mp4"
+                            muted
+                            loop
+                            playsinline
+                            preload="metadata"
+                            aria-label="Présentation vidéo de la maroquinerie"
+                        ></video>
+
+                        <div class="video-reel-gradient"></div>
+
+                        <div class="video-reel-topbar">
+                            <span class="video-reel-number">03</span>
+                            <span class="video-reel-category">Horlogerie</span>
+                        </div>
+
+                        <div class="video-reel-actions">
+                            <button type="button" class="video-reel-control js-video-play" aria-label="Lire la vidéo" title="Lecture / pause">
+                                <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path d="M8 5.14v13.72a1 1 0 0 0 1.5.86l10.29-6.86a1 1 0 0 0 0-1.72L9.5 4.28A1 1 0 0 0 8 5.14Z"/>
+                                </svg>
+                                <svg class="icon-pause hidden" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path d="M7 5.5A1.5 1.5 0 0 1 8.5 4h1A1.5 1.5 0 0 1 11 5.5v13A1.5 1.5 0 0 1 9.5 20h-1A1.5 1.5 0 0 1 7 18.5v-13Zm6 0A1.5 1.5 0 0 1 14.5 4h1A1.5 1.5 0 0 1 17 5.5v13a1.5 1.5 0 0 1-1.5 1.5h-1a1.5 1.5 0 0 1-1.5-1.5v-13Z"/>
+                                </svg>
+                            </button>
+                            <button type="button" class="video-reel-control js-video-mute" aria-label="Activer le son" title="Activer / couper le son">
+                                <svg class="icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M11 5 6.5 9H3v6h3.5L11 19V5Zm4.5 4 5 5m0-5-5 5"/>
+                                </svg>
+                                <svg class="icon-unmuted hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M11 5 6.5 9H3v6h3.5L11 19V5Zm4.5 3.5a5 5 0 0 1 0 7m2-9.5a9 9 0 0 1 0 12"/>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div class="video-reel-copy">
+                            <p class="text-brand-pale-orange/80 text-[10px] uppercase tracking-[0.22em] mb-2">
+                                Découvrez nos articles
+                            </p>
+                            <h3 class="font-serif text-2xl md:text-3xl text-brand-pale-orange">
+                                Ulysse Nardin
+                            </h3>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="video-reel-card" data-video-index="3">
+                    <div class="video-reel-media">
+                        <video
+                            class="video-reel"
+                            src="reel_5.mp4"
+                            muted
+                            loop
+                            playsinline
+                            preload="metadata"
+                            aria-label="Présentation vidéo des accessoires"
+                        ></video>
+
+                        <div class="video-reel-gradient"></div>
+
+                        <div class="video-reel-topbar">
+                            <span class="video-reel-number">04</span>
+                            <span class="video-reel-category">Horlogerie</span>
+                        </div>
+
+                        <div class="video-reel-actions">
+                            <button type="button" class="video-reel-control js-video-play" aria-label="Lire la vidéo" title="Lecture / pause">
+                                <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path d="M8 5.14v13.72a1 1 0 0 0 1.5.86l10.29-6.86a1 1 0 0 0 0-1.72L9.5 4.28A1 1 0 0 0 8 5.14Z"/>
+                                </svg>
+                                <svg class="icon-pause hidden" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path d="M7 5.5A1.5 1.5 0 0 1 8.5 4h1A1.5 1.5 0 0 1 11 5.5v13A1.5 1.5 0 0 1 9.5 20h-1A1.5 1.5 0 0 1 7 18.5v-13Zm6 0A1.5 1.5 0 0 1 14.5 4h1A1.5 1.5 0 0 1 17 5.5v13a1.5 1.5 0 0 1-1.5 1.5h-1a1.5 1.5 0 0 1-1.5-1.5v-13Z"/>
+                                </svg>
+                            </button>
+                            <button type="button" class="video-reel-control js-video-mute" aria-label="Activer le son" title="Activer / couper le son">
+                                <svg class="icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M11 5 6.5 9H3v6h3.5L11 5Zm4.5 4 5 5m0-5-5 5"/>
+                                </svg>
+                                <svg class="icon-unmuted hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M11 5 6.5 9H3v6h3.5L11 19V5Zm4.5 3.5a5 5 0 0 1 0 7m2-9.5a9 9 0 0 1 0 12"/>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div class="video-reel-copy">
+                            <p class="text-brand-pale-orange/80 text-[10px] uppercase tracking-[0.22em] mb-2">
+                                Cadeaux
+                            </p>
+                            <h3 class="font-serif text-2xl md:text-3xl text-brand-pale-orange">
+                                Faites plaisir à votre partenaire.
+                            </h3>
+                        </div>
+                    </div>
+                </article>
+
+                    <article class="video-reel-card" data-video-index="3">
+                    <div class="video-reel-media">
+                        <video
+                            class="video-reel"
+                            src="reel_3.mp4"
+                            muted
+                            loop
+                            playsinline
+                            preload="metadata"
+                            aria-label="Présentation vidéo des accessoires"
+                        ></video>
+
+                        <div class="video-reel-gradient"></div>
+
+                        <div class="video-reel-topbar">
+                            <span class="video-reel-number">06</span>
+                            <span class="video-reel-category">Horlogerie</span>
+                        </div>
+
+                        <div class="video-reel-actions">
+                            <button type="button" class="video-reel-control js-video-play" aria-label="Lire la vidéo" title="Lecture / pause">
+                                <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path d="M8 5.14v13.72a1 1 0 0 0 1.5.86l10.29-6.86a1 1 0 0 0 0-1.72L9.5 4.28A1 1 0 0 0 8 5.14Z"/>
+                                </svg>
+                                <svg class="icon-pause hidden" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path d="M7 5.5A1.5 1.5 0 0 1 8.5 4h1A1.5 1.5 0 0 1 11 5.5v13A1.5 1.5 0 0 1 9.5 20h-1A1.5 1.5 0 0 1 7 18.5v-13Zm6 0A1.5 1.5 0 0 1 14.5 4h1A1.5 1.5 0 0 1 17 5.5v13a1.5 1.5 0 0 1-1.5 1.5h-1a1.5 1.5 0 0 1-1.5-1.5v-13Z"/>
+                                </svg>
+                            </button>
+                            <button type="button" class="video-reel-control js-video-mute" aria-label="Activer le son" title="Activer / couper le son">
+                                <svg class="icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M11 5 6.5 9H3v6h3.5L11 5Zm4.5 4 5 5m0-5-5 5"/>
+                                </svg>
+                                <svg class="icon-unmuted hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M11 5 6.5 9H3v6h3.5L11 19V5Zm4.5 3.5a5 5 0 0 1 0 7m2-9.5a9 9 0 0 1 0 12"/>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div class="video-reel-copy">
+                            <p class="text-brand-pale-orange/80 text-[10px] uppercase tracking-[0.22em] mb-2">
+                                Détails LUXURY
+                            </p>
+                            <h3 class="font-serif text-2xl md:text-3xl text-brand-pale-orange">
+                                Le détail fait l'exception
+                            </h3>
+                        </div>
+                    </div>
+                </article>
+
+                    <article class="video-reel-card" data-video-index="3">
+                    <div class="video-reel-media">
+                        <video
+                            class="video-reel"
+                            src="reel_2.mp4"
+                            muted
+                            loop
+                            playsinline
+                            preload="metadata"
+                            aria-label="Présentation vidéo des accessoires"
+                        ></video>
+
+                        <div class="video-reel-gradient"></div>
+
+                        <div class="video-reel-topbar">
+                            <span class="video-reel-number">07</span>
+                            <span class="video-reel-category">Horlogerie</span>
+                        </div>
+
+                        <div class="video-reel-actions">
+                            <button type="button" class="video-reel-control js-video-play" aria-label="Lire la vidéo" title="Lecture / pause">
+                                <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path d="M8 5.14v13.72a1 1 0 0 0 1.5.86l10.29-6.86a1 1 0 0 0 0-1.72L9.5 4.28A1 1 0 0 0 8 5.14Z"/>
+                                </svg>
+                                <svg class="icon-pause hidden" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path d="M7 5.5A1.5 1.5 0 0 1 8.5 4h1A1.5 1.5 0 0 1 11 5.5v13A1.5 1.5 0 0 1 9.5 20h-1A1.5 1.5 0 0 1 7 18.5v-13Zm6 0A1.5 1.5 0 0 1 14.5 4h1A1.5 1.5 0 0 1 17 5.5v13a1.5 1.5 0 0 1-1.5 1.5h-1a1.5 1.5 0 0 1-1.5-1.5v-13Z"/>
+                                </svg>
+                            </button>
+                            <button type="button" class="video-reel-control js-video-mute" aria-label="Activer le son" title="Activer / couper le son">
+                                <svg class="icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M11 5 6.5 9H3v6h3.5L11 5Zm4.5 4 5 5m0-5-5 5"/>
+                                </svg>
+                                <svg class="icon-unmuted hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M11 5 6.5 9H3v6h3.5L11 19V5Zm4.5 3.5a5 5 0 0 1 0 7m2-9.5a9 9 0 0 1 0 12"/>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div class="video-reel-copy">
+                            <p class="text-brand-pale-orange/80 text-[10px] uppercase tracking-[0.22em] mb-2">
+                                Cadeaux
+                            </p>
+                            <h3 class="font-serif text-2xl md:text-3xl text-brand-pale-orange">
+                                Faites plaisir à votre partenaire.
+                            </h3>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            </div>
+            </div>
+
+            <div class="video-reels-controls container mx-auto px-4 md:px-8 mt-7 md:mt-9">
+                <div class="flex items-center justify-between gap-6">
+                    <div class="flex items-center gap-4">
+                        <button id="video-reels-prev" class="video-reels-arrow" type="button" aria-label="Vidéo précédente">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 19l-7-7 7-7"></path>
+                            </svg>
+                        </button>
+                        <button id="video-reels-next" class="video-reels-arrow" type="button" aria-label="Vidéo suivante">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="flex-1 max-w-xl">
+                        <div class="video-reels-progress" aria-hidden="true">
+                            <span id="video-reels-progress-bar"></span>
+                        </div>
+                    </div>
+
+                    <div class="video-reels-counter" aria-live="polite">
+                        <span id="video-reels-current">01</span>
+                        <span class="opacity-40">/</span>
+                        <span id="video-reels-total">07</span>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
     <!-- Filter & Collection Section -->
     <section class="py-24 bg-brand-pale-orange" id="collections">
         <div class="container mx-auto px-4 md:px-8">
             <div class="text-center mb-16">
-                <h2 class="font-serif text-3xl md:text-5xl text-brand-dark-cyan mb-4">L'Écrin de l'Excellence</h2>
+                <h2 class="font-serif text-3xl md:text-5xl text-brand-dark-cyan mb-4">Catalogue</h2>
                 <div class="w-16 h-0.5 bg-brand-dark-cyan mx-auto mb-6"></div>
                 <p class="text-brand-dark-cyan/70 max-w-2xl mx-auto font-light">Sélectionnez le meilleur du raffinement pour sublimer votre style au quotidien. Découvrez nos collections par catégorie.</p>
             </div>
@@ -205,6 +581,71 @@
                 <button class="filter-btn py-2 px-6 border-b-2 border-transparent text-brand-dark-cyan/60 hover:text-brand-dark-cyan hover:border-brand-dark-cyan/30 font-medium uppercase tracking-wider text-sm transition-all" data-filter="maroquinerie">Maroquinerie</button>
                 <button class="filter-btn py-2 px-6 border-b-2 border-transparent text-brand-dark-cyan/60 hover:text-brand-dark-cyan hover:border-brand-dark-cyan/30 font-medium uppercase tracking-wider text-sm transition-all" data-filter="accessoires">Accessoires</button>
             </div>
+
+            <!-- =========================================================
+     SECOND FILTER — PREMIUM BRANDS
+     ========================================================= -->
+
+<div
+    id="brand-filter-section"
+    class="hidden mb-16"
+    aria-label="Filtrage par marque"
+>
+
+    <!-- Brand Filter Header -->
+    <div class="text-center mb-10">
+
+        <span
+            class="block text-xs uppercase tracking-[0.3em]
+                   text-brand-dark-cyan/50 mb-3"
+        >
+            Affiner votre sélection
+        </span>
+
+        <h3
+            class="font-serif text-2xl md:text-3xl
+                   text-brand-dark-cyan"
+        >
+            Maisons & Marques
+        </h3>
+
+        <div
+            class="w-12 h-px bg-brand-dark-cyan/40
+                   mx-auto mt-4"
+        ></div>
+
+    </div>
+
+
+    <!-- Brand Cards -->
+    <div
+        id="brand-filter-grid"
+        class="grid grid-cols-2 sm:grid-cols-3
+               md:grid-cols-4 lg:grid-cols-5
+               gap-4 md:gap-6"
+    >
+        <!-- Brands generated by JS -->
+    </div>
+
+
+    <!-- Reset Brand -->
+    <div class="text-center mt-8">
+
+        <button
+            id="reset-brand-filter"
+            type="button"
+            class="hidden text-xs uppercase
+                   tracking-[0.2em]
+                   text-brand-dark-cyan/50
+                   hover:text-brand-dark-cyan
+                   transition-colors"
+        >
+            Toutes les marques
+        </button>
+
+    </div>
+
+</div>
 
             <!-- Product Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16" id="product-grid">
@@ -306,5 +747,6 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="video-carousel.js"></script>
 </body>
 </html>

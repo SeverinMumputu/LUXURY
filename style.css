@@ -95,3 +95,206 @@
             flex: 0 0 auto;
             scroll-snap-align: start;
         }
+
+        /* =========================================================
+   PREMIUM BRAND FILTER
+   ========================================================= */
+
+#brand-filter-section {
+    transition:
+        opacity 0.35s ease,
+        transform 0.35s ease;
+}
+
+
+/* =========================================================
+   BRAND CARD
+   ========================================================= */
+
+.brand-filter-card {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+
+    min-height: 230px;
+
+    overflow: hidden;
+
+    background: #ffffff;
+
+    border: 1px solid rgba(3, 51, 49, 0.08);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.45s ease,
+        box-shadow 0.45s ease,
+        border-color 0.35s ease;
+}
+
+
+/* Image */
+
+.brand-filter-image-wrapper {
+    position: absolute;
+    inset: 0;
+
+    overflow: hidden;
+}
+
+.brand-filter-image {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition:
+        transform 0.8s cubic-bezier(0.2, 0.65, 0.3, 1),
+        filter 0.5s ease;
+}
+
+
+/* Overlay premium */
+
+.brand-filter-overlay {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(3, 51, 49, 0.92) 0%,
+            rgba(3, 51, 49, 0.45) 42%,
+            rgba(3, 51, 49, 0.05) 75%
+        );
+
+    transition:
+        background 0.45s ease;
+}
+
+
+/* Content */
+
+.brand-filter-content {
+    position: relative;
+
+    z-index: 2;
+
+    width: 100%;
+
+    padding: 1.25rem;
+
+    text-align: center;
+
+    color: #f8f1e4;
+}
+
+.brand-filter-eyebrow {
+    display: block;
+
+    margin-bottom: 0.35rem;
+
+    font-family: 'Montserrat', sans-serif;
+
+    font-size: 8px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.28em;
+
+    opacity: 0.65;
+}
+
+.brand-filter-name {
+    font-family: 'Playfair Display', serif;
+
+    font-size: 1.2rem;
+
+    letter-spacing: 0.02em;
+
+    transition:
+        letter-spacing 0.4s ease;
+}
+
+
+/* Hover */
+
+.brand-filter-card:hover {
+    transform: translateY(-6px);
+
+    border-color:
+        rgba(3, 51, 49, 0.25);
+
+    box-shadow:
+        0 20px 40px rgba(3, 51, 49, 0.14);
+}
+
+.brand-filter-card:hover .brand-filter-image {
+    transform: scale(1.07);
+}
+
+.brand-filter-card:hover .brand-filter-name {
+    letter-spacing: 0.06em;
+}
+
+.brand-filter-card:hover .brand-filter-overlay {
+    background:
+        linear-gradient(
+            to top,
+            rgba(3, 51, 49, 0.96) 0%,
+            rgba(3, 51, 49, 0.5) 48%,
+            rgba(3, 51, 49, 0.08) 80%
+        );
+}
+
+
+/* =========================================================
+   ACTIVE BRAND
+   ========================================================= */
+
+.brand-filter-card.active {
+    border:
+        1px solid #033331;
+
+    box-shadow:
+        0 18px 40px rgba(3, 51, 49, 0.18);
+}
+
+.brand-filter-card.active::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 8px;
+
+    border:
+        1px solid rgba(248, 241, 228, 0.65);
+
+    pointer-events: none;
+
+    z-index: 3;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 767px) {
+
+    .brand-filter-card {
+        min-height: 190px;
+    }
+
+    .brand-filter-content {
+        padding: 1rem 0.75rem;
+    }
+
+    .brand-filter-name {
+        font-size: 1rem;
+    }
+
+}

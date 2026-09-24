@@ -1,13 +1,183 @@
 
-        // --- Product Data ---
-        const products = [
-            { id: 1, name: "Chronographe Royal", category: "horlogerie", price: 12500, img: "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?q=80&w=1780&auto=format&fit=crop", desc: "Or rose 18 carats, mouvement automatique suisse." },
-            { id: 2, name: "Le Sac Céleste", category: "maroquinerie", price: 3400, img: "https://images.unsplash.com/photo-1584916201218-f4242ceb4809?q=80&w=1915&auto=format&fit=crop", desc: "Cuir grainé pleine fleur, fermoir signature." },
-            { id: 3, name: "Essence de Nuit", category: "parfums", price: 350, img: "https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=1974&auto=format&fit=crop", desc: "Eau de parfum, notes boisées et ambrées." },
-            { id: 4, name: "Montre Squelette", category: "horlogerie", price: 28000, img: "montre_platine.jpg", desc: "Mécanisme apparent, édition limitée à 50 exemplaires." },
-            { id: 5, name: "Porte-cartes Onyx", category: "accessoires", price: 280, img: "https://images.unsplash.com/photo-1627123424574-724758594e93?q=80&w=1974&auto=format&fit=crop", desc: "Cuir de veau lisse, finition bords francs." },
-            { id: 6, name: "Lunettes Solaires Riviera", category: "accessoires", price: 450, img: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?q=80&w=2080&auto=format&fit=crop", desc: "Monture écaille véritable, verres polarisés." }
-        ];
+  // --- Product Data ---
+const products = [
+    {
+        id: 1,
+        name: "Chronographe Royal",
+        category: "horlogerie",
+        brand: "rolex",
+        price: 12500,
+        img: "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?q=80&w=1780&auto=format&fit=crop",
+        desc: "Or rose 18 carats, mouvement automatique suisse."
+    },
+
+    {
+        id: 2,
+        name: "Le Sac Céleste",
+        category: "maroquinerie",
+        brand: "cartier",
+        price: 3400,
+        img: "https://images.unsplash.com/photo-1584916201218-f4242ceb4809?q=80&w=1915&auto=format&fit=crop",
+        desc: "Cuir grainé pleine fleur, fermoir signature."
+    },
+
+    {
+        id: 3,
+        name: "Essence de Nuit",
+        category: "parfums",
+        brand: "cartier",
+        price: 350,
+        img: "https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=1974&auto=format&fit=crop",
+        desc: "Eau de parfum, notes boisées et ambrées."
+    },
+
+    {
+        id: 4,
+        name: "Montre Squelette",
+        category: "horlogerie",
+        brand: "audemars-piguet",
+        price: 28000,
+        img: "montre_platine.jpg",
+        desc: "Mécanisme apparent, édition limitée à 50 exemplaires."
+    },
+
+    {
+        id: 5,
+        name: "Porte-cartes Onyx",
+        category: "accessoires",
+        brand: "patek-philippe",
+        price: 280,
+        img: "https://images.unsplash.com/photo-1627123424574-724758594e93?q=80&w=1974&auto=format&fit=crop",
+        desc: "Cuir de veau lisse, finition bords francs."
+    },
+
+    {
+        id: 6,
+        name: "Lunettes Solaires Riviera",
+        category: "accessoires",
+        brand: "cartier",
+        price: 450,
+        img: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?q=80&w=2080&auto=format&fit=crop",
+        desc: "Monture écaille véritable, verres polarisés."
+    }
+];
+
+// =========================================================
+// PREMIUM BRAND CATALOGS
+// =========================================================
+
+const brandCatalogs = {
+
+    horlogerie: [
+        {
+            id: "rolex",
+            name: "Rolex",
+            image: "rolex.jpeg"
+        },
+        {
+            id: "audemars-piguet",
+            name: "Audemars Piguet",
+            image: "audemars.jpeg"
+        },
+        {
+            id: "patek-philippe",
+            name: "Patek Philippe",
+            image: "patek.jpeg"
+        },
+        {
+            id: "cartier",
+            name: "Cartier",
+            image: "cartier.jpeg"
+        },
+        {
+            id: "tissot",
+            name: "Tissot",
+            image: "tissot.jpeg"
+        },
+        {
+            id: "omega",
+            name: "Omega",
+            image: "omega.jpeg"
+        },
+        {
+            id: "richard",
+            name: "Richard Mille",
+            image: "richard_mille.jpeg"
+        },
+        {
+            id: "hublot",
+            name: "Hublot",
+            image: "hublot.jpeg"
+        },
+        {
+            id: "casio",
+            name: "Casio",
+            image: "casio.jpeg"
+        },
+        {
+            id: "Vacheron",
+            name: "Vacheron Constantin",
+            image: "vacheron.jpeg"
+        },
+        {
+            id: "daniel",
+            name: "Daniel Wellington",
+            image: "daniel.jpeg"
+        },
+        {
+            id: "montblanc",
+            name: "Mont Blanc",
+            image: "montBlanc.jpeg"
+        },
+        {
+            id: "jaeger",
+            name: "Jaeger-LeCoutre",
+            image: "jaeger.jpeg"
+        },
+        {
+            id: "tagheuer",
+            name: "TagHeuer",
+            image: "tagheuer.jpeg"
+        },
+        {
+            id: "ulysse",
+            name: "Ulysse Nardin",
+            image: "ulysse.jpeg"
+        },
+        {
+            id: "frank",
+            name: "Franck Muller",
+            image: "franck_muller.jpeg"
+        }
+    ],
+
+    maroquinerie: [
+        {
+            id: "cartier",
+            name: "Cartier",
+            image: "images/brands/cartier.jpg"
+        },
+        {
+            id: "hermes",
+            name: "Hermès",
+            image: "images/brands/hermes.jpg"
+        }
+    ],
+
+    accessoires: [
+        {
+            id: "cartier",
+            name: "Cartier",
+            image: "images/brands/cartier.jpg"
+        },
+        {
+            id: "rolex",
+            name: "Rolex",
+            image: "images/brands/rolex.jpg"
+        }
+    ]
+
+};
 
         const bestProducts = [
             products[0], products[1], products[3], products[2]
@@ -43,6 +213,9 @@
         const dots = document.querySelectorAll('.carousel-dot');
         const productGrid = document.getElementById('product-grid');
         const filterBtns = document.querySelectorAll('.filter-btn');
+        const brandFilterSection = document.getElementById('brand-filter-section');
+        const brandFilterGrid = document.getElementById('brand-filter-grid');
+        const resetBrandFilter = document.getElementById('reset-brand-filter');
         const bestProductsScroll = document.getElementById('best-products-scroll');
 
         
@@ -306,77 +479,503 @@ Je souhaite confirmer cette commande.`;
             slideInterval = setInterval(nextSlide, 7000); // 7 seconds per slide for premium slow feel
         };
 
+        // =========================================================
+// RENDER PREMIUM BRANDS
+// =========================================================
+
+const renderBrandFilters = (category) => {
+
+    brandFilterGrid.innerHTML = '';
+
+    const brands = brandCatalogs[category] || [];
+
+    /*
+     * Si la catégorie ne possède pas de catalogue
+     * de marques, on masque complètement le second filtre.
+     */
+    if (!brands.length) {
+
+        brandFilterSection.classList.add('hidden');
+
+        return;
+    }
+
+    brandFilterSection.classList.remove('hidden');
+
+    brands.forEach((brand, index) => {
+
+        const card = document.createElement('button');
+
+        card.type = 'button';
+
+        card.className = `
+            brand-filter-card
+            opacity-0
+            translate-y-6
+        `;
+
+        card.dataset.brand = brand.id;
+
+        card.innerHTML = `
+            <div class="brand-filter-image-wrapper">
+
+                <img
+                    src="${brand.image}"
+                    alt="${brand.name}"
+                    class="brand-filter-image"
+                    loading="lazy"
+                >
+
+                <div class="brand-filter-overlay"></div>
+
+            </div>
+
+            <div class="brand-filter-content">
+
+                <span class="brand-filter-eyebrow">
+                    Maison
+                </span>
+
+                <span class="brand-filter-name">
+                    ${brand.name}
+                </span>
+
+            </div>
+        `;
+
+        brandFilterGrid.appendChild(card);
+
+        setTimeout(() => {
+
+            card.classList.remove(
+                'opacity-0',
+                'translate-y-6'
+            );
+
+            card.classList.add(
+                'transition-all',
+                'duration-700',
+                'ease-out'
+            );
+
+        }, index * 80);
+
+
+        // Sélection d'une marque
+        card.addEventListener('click', () => {
+
+            document
+                .querySelectorAll('.brand-filter-card')
+                .forEach(item => {
+                    item.classList.remove('active');
+                });
+
+            card.classList.add('active');
+
+            const selectedBrand =
+                card.dataset.brand;
+
+            renderProducts(category, selectedBrand);
+
+            resetBrandFilter.classList.remove('hidden');
+
+            /*
+             * On ramène doucement l'utilisateur
+             * vers les produits.
+             */
+            setTimeout(() => {
+
+                productGrid.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+
+            }, 100);
+
+        });
+
+    });
+
+};
 
         // --- Render Main Product Grid (with Filtering) ---
-        const renderProducts = (filter = 'all') => {
-            productGrid.innerHTML = '';
-            
-            const filteredProducts = filter === 'all' 
-                ? products 
-                : products.filter(p => p.category === filter || (filter === 'accessoires' && p.category !== 'horlogerie' && p.category !== 'maroquinerie'));
+        // =========================================================
+// RENDER MAIN PRODUCT GRID
+// CATEGORY + BRAND FILTERING
+// =========================================================
 
-            filteredProducts.forEach((p, index) => {
-                // Staggered animation delay based on index
-                const delay = index * 100;
-                
-                const card = document.createElement('div');
-                card.className = `product-card group flex flex-col bg-white border border-brand-dark-cyan/5 p-4 opacity-0 transform translate-y-8 transition-all duration-700 ease-out`;
-                card.style.transitionDelay = `${delay}ms`;
-                
-                card.innerHTML = `
-                    <div class="product-image-container relative h-80 mb-6 bg-[#f4ece0]">
-                        <img src="${p.img}" alt="${p.name}" class="product-image w-full h-full object-cover">
-                        
-                        <!-- Quick Add Button (Hover overlay) -->
-                        <div class="absolute inset-0 bg-brand-dark-cyan/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <button onclick="addToCart(${p.id})" class="bg-brand-pale-orange text-brand-dark-cyan px-6 py-3 font-medium text-sm tracking-widest uppercase hover:bg-white transition-colors transform translate-y-4 group-hover:translate-y-0 duration-300">
-                                Ajouter au panier
-                            </button>
-                        </div>
-                    </div>
-                    <div class="text-center flex-grow flex flex-col justify-between">
-                        <div>
-                            <span class="text-xs text-brand-dark-cyan/50 uppercase tracking-widest mb-2 block">${p.category}</span>
-                            <h3 class="font-serif text-xl text-brand-dark-cyan mb-2">${p.name}</h3>
-                            <p class="text-sm font-light text-brand-dark-cyan/70 line-clamp-2 mb-4">${p.desc}</p>
-                        </div>
-                        <p class="font-medium text-lg text-brand-dark-cyan">${formatPrice(p.price)}</p>
-                    </div>
-                `;
-                
-                productGrid.appendChild(card);
-                
-                // Trigger animation after append
-                setTimeout(() => {
-                    card.classList.remove('opacity-0', 'translate-y-8');
-                }, 50);
-            });
-        };
+const renderProducts = (
+    filter = 'all',
+    brand = null
+) => {
 
-        // --- Filter Logic ---
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                // Update active button styling
-                filterBtns.forEach(b => {
-                    b.classList.remove('active', 'border-brand-dark-cyan', 'text-brand-dark-cyan');
-                    b.classList.add('border-transparent', 'text-brand-dark-cyan/60');
-                });
-                
-                const target = e.target;
-                target.classList.remove('border-transparent', 'text-brand-dark-cyan/60');
-                target.classList.add('active', 'border-brand-dark-cyan', 'text-brand-dark-cyan');
-                
-                const filterValue = target.getAttribute('data-filter');
-                
-                // Fade out current grid
-                productGrid.style.opacity = '0';
-                
-                setTimeout(() => {
-                    renderProducts(filterValue);
-                    productGrid.style.opacity = '1';
-                }, 300);
-            });
+    productGrid.innerHTML = '';
+
+    let filteredProducts;
+
+
+    // -----------------------------------------------------
+    // 1. CATEGORY FILTER
+    // -----------------------------------------------------
+
+    if (filter === 'all') {
+
+        filteredProducts = products;
+
+    } else {
+
+        filteredProducts = products.filter(p =>
+            p.category === filter ||
+            (
+                filter === 'accessoires' &&
+                p.category !== 'horlogerie' &&
+                p.category !== 'maroquinerie'
+            )
+        );
+
+    }
+
+
+    // -----------------------------------------------------
+    // 2. BRAND FILTER
+    // -----------------------------------------------------
+
+    if (brand) {
+
+        filteredProducts = filteredProducts.filter(
+            p => p.brand === brand
+        );
+
+    }
+
+
+    // -----------------------------------------------------
+    // 3. RENDER PRODUCTS
+    // -----------------------------------------------------
+
+    filteredProducts.forEach((p, index) => {
+
+        const delay = index * 100;
+
+        const card = document.createElement('div');
+
+        card.className = `
+            product-card
+            group
+            flex
+            flex-col
+            bg-white
+            border
+            border-brand-dark-cyan/5
+            p-4
+            opacity-0
+            transform
+            translate-y-8
+            transition-all
+            duration-700
+            ease-out
+        `;
+
+        card.style.transitionDelay = `${delay}ms`;
+
+        card.innerHTML = `
+
+            <div
+                class="product-image-container
+                       relative
+                       h-80
+                       mb-6
+                       bg-[#f4ece0]"
+            >
+
+                <img
+                    src="${p.img}"
+                    alt="${p.name}"
+                    class="product-image w-full h-full object-cover"
+                >
+
+                <div
+                    class="absolute inset-0
+                           bg-brand-dark-cyan/20
+                           opacity-0
+                           group-hover:opacity-100
+                           transition-opacity
+                           duration-300
+                           flex items-center
+                           justify-center"
+                >
+
+                    <button
+                        onclick="addToCart(${p.id})"
+                        class="bg-brand-pale-orange
+                               text-brand-dark-cyan
+                               px-6
+                               py-3
+                               font-medium
+                               text-sm
+                               tracking-widest
+                               uppercase
+                               hover:bg-white
+                               transition-colors
+                               transform
+                               translate-y-4
+                               group-hover:translate-y-0
+                               duration-300"
+                    >
+                        Ajouter au panier
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="text-center
+                       flex-grow
+                       flex flex-col
+                       justify-between"
+            >
+
+                <div>
+
+                    <span
+                        class="text-xs
+                               text-brand-dark-cyan/50
+                               uppercase
+                               tracking-widest
+                               mb-2
+                               block"
+                    >
+                        ${p.brand || p.category}
+                    </span>
+
+                    <h3
+                        class="font-serif
+                               text-xl
+                               text-brand-dark-cyan
+                               mb-2"
+                    >
+                        ${p.name}
+                    </h3>
+
+                    <p
+                        class="text-sm
+                               font-light
+                               text-brand-dark-cyan/70
+                               line-clamp-2
+                               mb-4"
+                    >
+                        ${p.desc}
+                    </p>
+
+                </div>
+
+                <p
+                    class="font-medium
+                           text-lg
+                           text-brand-dark-cyan"
+                >
+                    ${formatPrice(p.price)}
+                </p>
+
+            </div>
+        `;
+
+        productGrid.appendChild(card);
+
+
+        // Animation
+        setTimeout(() => {
+
+            card.classList.remove(
+                'opacity-0',
+                'translate-y-8'
+            );
+
+        }, 50);
+
+    });
+
+
+    // -----------------------------------------------------
+    // EMPTY STATE
+    // -----------------------------------------------------
+
+    if (filteredProducts.length === 0) {
+
+        productGrid.innerHTML = `
+
+            <div
+                class="col-span-full
+                       text-center
+                       py-16"
+            >
+
+                <span
+                    class="block
+                           text-xs
+                           uppercase
+                           tracking-[0.25em]
+                           text-brand-dark-cyan/40
+                           mb-4"
+                >
+                    Collection
+                </span>
+
+                <p
+                    class="font-serif
+                           text-2xl
+                           text-brand-dark-cyan"
+                >
+                    Aucun produit disponible
+                </p>
+
+                <p
+                    class="mt-2
+                           text-sm
+                           text-brand-dark-cyan/60"
+                >
+                    Cette sélection sera bientôt enrichie.
+                </p>
+
+            </div>
+
+        `;
+
+    }
+
+};
+
+// FILTER LOGIC
+// CATEGORY → BRAND → PRODUCTS
+// =========================================================
+
+filterBtns.forEach(btn => {
+
+    btn.addEventListener('click', (e) => {
+
+        // -------------------------------------------------
+        // Active category
+        // -------------------------------------------------
+
+        filterBtns.forEach(b => {
+
+            b.classList.remove(
+                'active',
+                'border-brand-dark-cyan',
+                'text-brand-dark-cyan'
+            );
+
+            b.classList.add(
+                'border-transparent',
+                'text-brand-dark-cyan/60'
+            );
+
         });
+
+
+        const target = e.currentTarget;
+
+
+        target.classList.remove(
+            'border-transparent',
+            'text-brand-dark-cyan/60'
+        );
+
+        target.classList.add(
+            'active',
+            'border-brand-dark-cyan',
+            'text-brand-dark-cyan'
+        );
+
+
+        const filterValue =
+            target.getAttribute('data-filter');
+
+
+        // -------------------------------------------------
+        // Reset second filter
+        // -------------------------------------------------
+
+        document
+            .querySelectorAll('.brand-filter-card')
+            .forEach(card => {
+                card.classList.remove('active');
+            });
+
+        resetBrandFilter.classList.add('hidden');
+
+
+        // -------------------------------------------------
+        // Category "Tout"
+        // -------------------------------------------------
+
+        if (filterValue === 'all') {
+
+            brandFilterSection.classList.add('hidden');
+
+            productGrid.style.opacity = '0';
+
+            setTimeout(() => {
+
+                renderProducts('all');
+
+                productGrid.style.opacity = '1';
+
+            }, 300);
+
+            return;
+        }
+
+
+        // -------------------------------------------------
+        // Category selected
+        // -------------------------------------------------
+
+        renderBrandFilters(filterValue);
+
+
+        // -------------------------------------------------
+        // Product transition
+        // -------------------------------------------------
+
+        productGrid.style.opacity = '0';
+
+        setTimeout(() => {
+
+            /*
+             * On affiche d'abord les produits
+             * de la catégorie entière.
+             *
+             * Le client peut ensuite affiner
+             * avec une marque.
+             */
+            renderProducts(filterValue);
+
+            productGrid.style.opacity = '1';
+
+        }, 300);
+
+    });
+
+});
+
+// =========================================================
+// RESET BRAND FILTER
+// =========================================================
+
+resetBrandFilter.addEventListener('click', () => {
+
+    document
+        .querySelectorAll('.brand-filter-card')
+        .forEach(card => {
+            card.classList.remove('active');
+        });
+
+    resetBrandFilter.classList.add('hidden');
+
+});
 
         // --- Render Horizontal Best Products ---
         const renderBestProducts = () => {
