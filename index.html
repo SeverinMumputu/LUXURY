@@ -7,6 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="video-carousel.css">
+    <link rel="stylesheet" href="styles_2.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <script>
@@ -58,19 +59,140 @@
                         </a>
                     </div>
 
-                    <!-- Cart Icon (Right) -->
-                    <div class="w-1/3 flex justify-end">
-                        <button id="cart-btn" class="relative group p-2 focus:outline-none" aria-label="Panier">
-                            <svg class="w-6 h-6 text-brand-dark-cyan transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-                            </svg>
-                            <span id="cart-count" class="absolute top-0 right-0 -mt-1 -mr-1 bg-brand-dark-cyan text-brand-pale-orange text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center opacity-0 transition-opacity duration-300">0</span>
-                        </button>
-                    </div>
+<!-- Search + Cart (Right) -->
+<div class="w-1/3 flex justify-end items-center gap-2">
+
+    <!-- Search Button -->
+    <button
+        id="search-btn"
+        type="button"
+        class="relative group p-2 focus:outline-none"
+        aria-label="Rechercher un produit"
+        aria-expanded="false"
+    >
+        <svg
+            class="w-6 h-6 text-brand-dark-cyan transition-transform duration-300 group-hover:scale-110"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+        >
+            <circle cx="11" cy="11" r="6.5" stroke-width="1.5"></circle>
+            <path
+                stroke-linecap="round"
+                stroke-width="1.5"
+                d="m16 16 4.5 4.5"
+            ></path>
+        </svg>
+    </button>
+
+    <!-- Cart Icon -->
+    <button
+        id="cart-btn"
+        class="relative group p-2 focus:outline-none"
+        aria-label="Panier"
+    >
+        <svg
+            class="w-6 h-6 text-brand-dark-cyan transition-transform duration-300 group-hover:scale-110"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+            ></path>
+        </svg>
+
+        <span
+            id="cart-count"
+            class="absolute top-0 right-0 -mt-1 -mr-1 bg-brand-dark-cyan text-brand-pale-orange text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center opacity-0 transition-opacity duration-300"
+        >0</span>
+    </button>
+
+</div>
+
                 </div>
             </div>
         </div>
     </header>
+
+    <!-- Premium Search Panel -->
+<div id="search-panel" class="fixed top-[5.25rem] md:top-[6.25rem] left-0 w-full z-40">
+
+    <div class="container mx-auto px-4 md:px-8">
+
+        <div
+            id="search-box"
+            class="search-box mx-auto max-w-3xl bg-brand-pale-orange border border-brand-dark-cyan/10 shadow-2xl"
+        >
+
+            <!-- Search Input -->
+            <div class="flex items-center gap-4 px-5 md:px-7 py-4">
+
+                <svg
+                    class="w-5 h-5 text-brand-dark-cyan/50 flex-shrink-0"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                >
+                    <circle cx="11" cy="11" r="6.5" stroke-width="1.5"></circle>
+                    <path
+                        stroke-linecap="round"
+                        stroke-width="1.5"
+                        d="m16 16 4.5 4.5"
+                    ></path>
+                </svg>
+
+                <input
+                    id="search-input"
+                    type="search"
+                    autocomplete="off"
+                    placeholder="Rechercher une pièce, une maison..."
+                    class="search-input flex-1 bg-transparent border-none outline-none text-brand-dark-cyan placeholder-brand-dark-cyan/40 font-sans text-sm md:text-base"
+                    aria-label="Rechercher un produit"
+                >
+
+                <button
+                    id="search-close-btn"
+                    type="button"
+                    class="p-1 text-brand-dark-cyan/50 hover:text-brand-dark-cyan transition-colors"
+                    aria-label="Fermer la recherche"
+                >
+                    <svg
+                        class="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="1.5"
+                            d="M6 6l12 12M18 6L6 18"
+                        ></path>
+                    </svg>
+                </button>
+
+            </div>
+
+            <!-- Search Results -->
+            <div
+                id="search-results"
+                class="search-results border-t border-brand-dark-cyan/10"
+            ></div>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- Search Backdrop -->
+<div id="search-backdrop" class="fixed inset-0 z-30"></div>
 
     <!-- Fullscreen Mobile Menu Overlay -->
     <div id="mobile-menu" class="fixed inset-0 bg-brand-dark-cyan z-40 flex flex-col justify-center items-center">
@@ -80,7 +202,7 @@
             </svg>
         </button>
         <nav class="flex flex-col items-center space-y-8 text-brand-pale-orange font-serif text-3xl md:text-5xl">
-            <a href="#" class="hover:text-white transition-colors duration-300 relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-0 after:h-0.5 after:bg-brand-pale-orange hover:after:w-full after:transition-all after:duration-300">Nouveautés</a>
+            <a href="#nouveautes" class="hover:text-white transition-colors duration-300 relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-0 after:h-0.5 after:bg-brand-pale-orange hover:after:w-full after:transition-all after:duration-300">Nouveautés</a>
             <a href="#horlogerie" class="hover:text-white transition-colors duration-300 relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-0 after:h-0.5 after:bg-brand-pale-orange hover:after:w-full after:transition-all after:duration-300">Horlogerie</a>
             <a href="#maroquinerie" class="hover:text-white transition-colors duration-300 relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-0 after:h-0.5 after:bg-brand-pale-orange hover:after:w-full after:transition-all after:duration-300">Maroquinerie</a>
             <a href="#parfums" class="hover:text-white transition-colors duration-300 relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-0 after:h-0.5 after:bg-brand-pale-orange hover:after:w-full after:transition-all after:duration-300">Parfums</a>
@@ -571,8 +693,87 @@
             <div class="text-center mb-16">
                 <h2 class="font-serif text-3xl md:text-5xl text-brand-dark-cyan mb-4">Catalogue</h2>
                 <div class="w-16 h-0.5 bg-brand-dark-cyan mx-auto mb-6"></div>
+
+                <!-- =========================================================
+     CATALOGUE ACCORDION CARD
+     ========================================================= -->
+<div class="catalogue-reveal-wrapper">
+
+    <button
+        id="catalogue-toggle"
+        type="button"
+        class="catalogue-flip-card"
+        aria-expanded="false"
+        aria-controls="catalogue-content"
+    >
+
+        <span class="catalogue-flip-inner">
+
+            <!-- RECTO -->
+            <span class="catalogue-flip-face catalogue-flip-front">
+
+                <span class="catalogue-card-overlay"></span>
+
+                <span class="catalogue-card-content">
+
+                    <span class="catalogue-card-eyebrow">
+                        Collection Privée
+                    </span>
+
+                    <span class="catalogue-card-title">
+                        Voir le catalogue
+                    </span>
+
+                    <span class="catalogue-card-line"></span>
+
+                    <span class="catalogue-card-hint">
+                        Découvrez nos pièces
+                    </span>
+
+                </span>
+
+            </span>
+
+
+            <!-- VERSO -->
+            <span class="catalogue-flip-face catalogue-flip-back">
+
+                <span class="catalogue-card-overlay"></span>
+
+                <span class="catalogue-card-content">
+
+                    <span class="catalogue-card-eyebrow">
+                        Maison
+                    </span>
+
+                    <span class="catalogue-card-title">
+                        Luxury
+                    </span>
+
+                    <span class="catalogue-card-line"></span>
+
+                    <span class="catalogue-card-hint">
+                        L'élégance vous attend
+                    </span>
+
+                </span>
+
+            </span>
+
+        </span>
+
+    </button>
+
+</div>
+ 
                 <p class="text-brand-dark-cyan/70 max-w-2xl mx-auto font-light">Sélectionnez le meilleur du raffinement pour sublimer votre style au quotidien. Découvrez nos collections par catégorie.</p>
             </div>
+
+                           <div
+    id="catalogue-content"
+    class="catalogue-content"
+    aria-hidden="true"
+>
 
             <!-- Filter Buttons -->
             <div class="flex flex-wrap justify-center gap-4 mb-16" id="filter-buttons">
@@ -652,18 +853,200 @@
                 <!-- Products will be generated by JS -->
             </div>
             
-            <div class="text-center mt-20">
-                <button class="inline-block py-4 px-12 bg-transparent border border-brand-dark-cyan text-brand-dark-cyan hover:bg-brand-dark-cyan hover:text-brand-pale-orange transition-all duration-300 uppercase tracking-widest text-sm font-semibold">Voir tout le catalogue</button>
-            </div>
         </div>
+        </div> <!-- fermeture container -->
     </section>
 
+    <!-- =========================================================
+     LUXURY BY ESS — ANNONCES, COMMUNIQUÉS & ARRIVAGES
+     ========================================================= -->
+<section
+    id="luxury-announcements"
+    class="luxury-news-section"
+    aria-labelledby="luxury-news-title"
+>
+
+    <div class="container mx-auto px-4 md:px-8">
+
+        <!-- Section Header -->
+        <div class="luxury-news-header">
+
+            <div>
+                <span class="luxury-news-eyebrow">
+                    L'actualité Luxury
+                </span>
+
+                <h2
+                    id="luxury-news-title"
+                    class="luxury-news-title"
+                >
+                    Découvrez les dernières nouvelles de Luxury
+                </h2>
+            </div>
+
+            <div class="luxury-news-line"></div>
+
+        </div>
+
+
+        <!-- News Grid -->
+        <div class="luxury-news-grid">
+
+            <!-- =================================================
+                 ANNONCE
+                 ================================================= -->
+            <article class="luxury-news-card luxury-news-card-featured">
+
+                <div class="luxury-news-card-image">
+                    <img
+                        src="montre_platine.jpg"
+                        alt="Nouvel arrivage Luxury by Ess"
+                        loading="lazy"
+                    >
+
+                    <div class="luxury-news-card-overlay"></div>
+
+                    <span class="luxury-news-badge">
+                        Annonce
+                    </span>
+                </div>
+
+                <div class="luxury-news-card-content">
+
+                    <span class="luxury-news-card-date">
+                        Actualité Luxury
+                    </span>
+
+                    <h3>
+                        Une nouvelle sélection arrive
+                    </h3>
+
+                    <p>
+                        Découvrez prochainement une nouvelle sélection
+                        de pièces choisies avec soin par Luxury by Ess.
+                    </p>
+
+                    <button
+                        type="button"
+                        class="luxury-news-link"
+                        aria-label="Découvrir la nouvelle sélection"
+                    >
+                        Découvrir
+                        <span aria-hidden="true">→</span>
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- =================================================
+                 COMMUNIQUÉ
+                 ================================================= -->
+            <article class="luxury-news-card">
+
+                <div class="luxury-news-card-image">
+                    <img
+                        src="Luxury LXY loo designed by lisalarvisual Inc ©️ Juin 2026.png"
+                        alt="Communiqué Luxury by Ess"
+                        loading="lazy"
+                    >
+
+                    <div class="luxury-news-card-overlay"></div>
+
+                    <span class="luxury-news-badge">
+                        Communiqué
+                    </span>
+                </div>
+
+                <div class="luxury-news-card-content">
+
+                    <span class="luxury-news-card-date">
+                        Informations
+                    </span>
+
+                    <h3>
+                        Les nouvelles de la Maison
+                    </h3>
+
+                    <p>
+                        Retrouvez ici les communications et informations
+                        importantes de Luxury by Ess.
+                    </p>
+
+                    <button
+                        type="button"
+                        class="luxury-news-link"
+                        aria-label="Lire le communiqué"
+                    >
+                        Lire le communiqué
+                        <span aria-hidden="true">→</span>
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- =================================================
+                 ARRIVAGE
+                 ================================================= -->
+            <article class="luxury-news-card">
+
+                <div class="luxury-news-card-image">
+                    <img
+                        src="montre_platine.jpg"
+                        alt="Nouvel arrivage de produits Luxury by Ess"
+                        loading="lazy"
+                    >
+
+                    <div class="luxury-news-card-overlay"></div>
+
+                    <span class="luxury-news-badge">
+                        Nouvel arrivage
+                    </span>
+                </div>
+
+                <div class="luxury-news-card-content">
+
+                    <span class="luxury-news-card-date">
+                        Collection
+                    </span>
+
+                    <h3>
+                        De nouvelles pièces disponibles
+                    </h3>
+
+                    <p>
+                        De nouveaux produits rejoignent l'univers
+                        Luxury by Ess. Découvrez les dernières pièces.
+                    </p>
+
+                    <button
+                        type="button"
+                        class="luxury-news-link"
+                        aria-label="Voir les nouveaux arrivages"
+                    >
+                        Voir les arrivages
+                        <span aria-hidden="true">→</span>
+                    </button>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
     <!-- Best Products (Animated Fluid Exposition) -->
-    <section class="py-24 bg-white overflow-hidden relative">
+    <section id="nouveautes" class="py-24 bg-white overflow-hidden relative">
         <div class="container mx-auto px-4 md:px-8 mb-12 flex justify-between items-end">
             <div>
                 <span class="text-brand-dark-cyan/60 uppercase tracking-[0.2em] text-xs mb-2 block">La Sélection</span>
-                <h2 class="font-serif text-3xl md:text-5xl text-brand-dark-cyan">Pièces Maîtresses</h2>
+                <h2 class="font-serif text-3xl md:text-5xl text-brand-dark-cyan">Nouveautés</h2>
             </div>
             <div class="hidden md:flex gap-4">
                 <!-- Custom navigation for scroll -->
@@ -688,6 +1071,146 @@
             <!-- Dots injected by JS -->
         </div>
     </section>
+
+    <!-- =========================================================
+     LUXURY BY ESS — NOS PARTENAIRES
+     ========================================================= -->
+<section
+    id="luxury-partners"
+    class="luxury-partners-section"
+    aria-labelledby="luxury-partners-title"
+>
+
+    <div class="container mx-auto px-4 md:px-8">
+
+        <!-- Section Header -->
+        <div class="luxury-partners-header">
+
+            <span class="luxury-partners-eyebrow">
+                Ils nous accompagnent
+            </span>
+
+            <h2
+                id="luxury-partners-title"
+                class="luxury-partners-title"
+            >
+                Nos partenaires
+            </h2>
+
+            <div class="luxury-partners-divider"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Partners Marquee -->
+    <div class="luxury-partners-marquee">
+
+        <div class="luxury-partners-track">
+
+            <!-- Partner 01 -->
+            <div class="luxury-partner">
+                <div class="luxury-partner-logo">
+                    <img
+                        src="rolex.jpeg"
+                        alt="Nom du partenaire 1"
+                        loading="lazy"
+                    >
+                </div>
+
+                <span class="luxury-partner-name">
+                    ROLEX
+                </span>
+            </div>
+
+
+            <!-- Partner 02 -->
+            <div class="luxury-partner">
+                <div class="luxury-partner-logo">
+                    <img
+                        src="audemars.jpeg"
+                        alt="Nom du partenaire 2"
+                        loading="lazy"
+                    >
+                </div>
+
+                <span class="luxury-partner-name">
+                    AUDEMARS PIGUET
+                </span>
+            </div>
+
+
+            <!-- Partner 03 -->
+            <div class="luxury-partner">
+                <div class="luxury-partner-logo">
+                    <img
+                        src="patek.jpeg"
+                        alt="Nom du partenaire 3"
+                        loading="lazy"
+                    >
+                </div>
+
+                <span class="luxury-partner-name">
+                    PATEK PHILIPPE
+                </span>
+            </div>
+
+
+            <!-- Partner 04 -->
+            <div class="luxury-partner">
+                <div class="luxury-partner-logo">
+                    <img
+                        src="cartier.jpeg"
+                        alt="Nom du partenaire 4"
+                        loading="lazy"
+                    >
+                </div>
+
+                <span class="luxury-partner-name">
+                    CARTIER
+                </span>
+            </div>
+
+
+            <!-- Partner 05 -->
+            <div class="luxury-partner">
+                <div class="luxury-partner-logo">
+                    <img
+                        src="tissot.jpeg"
+                        alt="Nom du partenaire 5"
+                        loading="lazy"
+                    >
+                </div>
+
+                <span class="luxury-partner-name">
+                    TISSOT
+                </span>
+            </div>
+
+
+            <!-- Partner 06 -->
+            <div class="luxury-partner">
+                <div class="luxury-partner-logo">
+                    <img
+                        src="casio.jpeg"
+                        alt="Nom du partenaire 6"
+                        loading="lazy"
+                    >
+                </div>
+
+                <span class="luxury-partner-name">
+                    CASIO
+                </span>
+            </div>
+
+
+            
+        </div>
+
+    </div>
+
+</section>
 
     <!-- Premium Footer -->
     <footer class="bg-brand-dark-cyan text-brand-pale-orange pt-24 pb-12 border-t-4 border-brand-pale-orange/20">
@@ -746,7 +1269,71 @@
         </div>
     </footer>
 
+    <!-- =========================================================
+     PREMIUM PAGE NAVIGATION
+     ========================================================= -->
+<div id="premium-page-nav" class="premium-page-nav" aria-label="Navigation rapide">
+
+    <!-- Retour vers le haut -->
+    <button
+        id="page-scroll-top"
+        class="premium-page-nav-btn"
+        type="button"
+        aria-label="Remonter en haut de la page"
+        title="Retour en haut"
+    >
+        <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            aria-hidden="true"
+        >
+            <path
+                d="M12 19V5"
+                stroke-width="1.5"
+                stroke-linecap="round"
+            />
+            <path
+                d="M6.5 11.5 12 6l5.5 5.5"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            />
+        </svg>
+    </button>
+
+    <!-- Aller vers le footer -->
+    <button
+        id="page-scroll-bottom"
+        class="premium-page-nav-btn"
+        type="button"
+        aria-label="Aller au bas de la page"
+        title="Aller au bas"
+    >
+        <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            aria-hidden="true"
+        >
+            <path
+                d="M12 5v14"
+                stroke-width="1.5"
+                stroke-linecap="round"
+            />
+            <path
+                d="m6.5 12.5 5.5 5.5 5.5-5.5"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            />
+        </svg>
+    </button>
+
+</div>
+
     <script src="script.js"></script>
+    <script src="script_2.js"></script>
     <script src="video-carousel.js"></script>
 </body>
 </html>

@@ -1,0 +1,711 @@
+/* =========================================================
+   PREMIUM PRODUCT SEARCH
+   ========================================================= */
+
+#search-panel {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-12px);
+    transition:
+        opacity 0.3s ease,
+        transform 0.35s ease,
+        visibility 0.35s ease;
+    pointer-events: none;
+}
+
+#search-panel.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+
+/* ---------------------------------------------------------
+   SEARCH BOX
+   --------------------------------------------------------- */
+
+.search-box {
+    overflow: hidden;
+    border-radius: 2px;
+    transform: translateY(-4px);
+    transition:
+        box-shadow 0.3s ease,
+        transform 0.3s ease;
+}
+
+#search-panel.open .search-box {
+    transform: translateY(0);
+    box-shadow:
+        0 24px 60px rgba(3, 51, 49, 0.16);
+}
+
+
+/* ---------------------------------------------------------
+   SEARCH INPUT
+   --------------------------------------------------------- */
+
+.search-input::-webkit-search-cancel-button {
+    appearance: none;
+}
+
+.search-input:focus {
+    outline: none;
+}
+
+
+/* ---------------------------------------------------------
+   BACKDROP
+   --------------------------------------------------------- */
+
+#search-backdrop {
+    background: rgba(3, 51, 49, 0.12);
+    backdrop-filter: blur(2px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease;
+}
+
+#search-backdrop.open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+
+/* ---------------------------------------------------------
+   SEARCH RESULTS
+   --------------------------------------------------------- */
+
+.search-results {
+    max-height: min(60vh, 500px);
+    overflow-y: auto;
+    background: #f8f1e4;
+}
+
+
+/* Search result item */
+
+.search-result-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    padding: 0.85rem 1.25rem;
+    text-align: left;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid rgba(3, 51, 49, 0.07);
+    cursor: pointer;
+    transition:
+        background-color 0.25s ease,
+        padding-left 0.25s ease;
+}
+
+.search-result-item:hover {
+    background: rgba(255, 255, 255, 0.7);
+    padding-left: 1.5rem;
+}
+
+
+/* Product image */
+
+.search-result-image {
+    width: 58px;
+    height: 58px;
+    flex-shrink: 0;
+    object-fit: cover;
+    background: #f4ece0;
+}
+
+
+/* Product information */
+
+.search-result-info {
+    min-width: 0;
+    flex: 1;
+}
+
+.search-result-brand {
+    display: block;
+    margin-bottom: 0.2rem;
+    color: rgba(3, 51, 49, 0.45);
+    font-size: 9px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+}
+
+.search-result-name {
+    display: block;
+    overflow: hidden;
+    color: #033331;
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.search-result-price {
+    flex-shrink: 0;
+    color: #033331;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+
+/* ---------------------------------------------------------
+   SEARCH EMPTY STATE
+   --------------------------------------------------------- */
+
+.search-empty {
+    padding: 2rem 1.5rem;
+    text-align: center;
+}
+
+.search-empty-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: rgba(3, 51, 49, 0.4);
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+}
+
+.search-empty-title {
+    color: #033331;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+}
+
+
+/* ---------------------------------------------------------
+   SEARCH HINT
+   --------------------------------------------------------- */
+
+.search-hint {
+    padding: 1rem 1.25rem;
+    color: rgba(3, 51, 49, 0.45);
+    font-size: 0.75rem;
+    text-align: center;
+}
+
+
+/* ---------------------------------------------------------
+   PRODUCT HIGHLIGHT AFTER REDIRECTION
+   --------------------------------------------------------- */
+
+.product-card.search-highlight {
+    position: relative;
+    z-index: 5;
+    box-shadow:
+        0 0 0 2px #033331,
+        0 24px 50px rgba(3, 51, 49, 0.18);
+    transform: translateY(-8px);
+}
+
+
+/* ---------------------------------------------------------
+   MOBILE
+   --------------------------------------------------------- */
+
+@media (max-width: 767px) {
+
+    #search-panel {
+        top: 5.25rem;
+    }
+
+    .search-result-item {
+        padding: 0.75rem 1rem;
+    }
+
+    .search-result-item:hover {
+        padding-left: 1rem;
+    }
+
+    .search-result-image {
+        width: 50px;
+        height: 50px;
+    }
+
+    .search-result-price {
+        display: none;
+    }
+
+}
+
+/* =========================================================
+   PREMIUM PAGE NAVIGATION
+   ========================================================= */
+
+.premium-page-nav {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 45;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(15px);
+
+    transition:
+        opacity 0.4s ease,
+        visibility 0.4s ease,
+        transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Navigation visible */
+.premium-page-nav.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Boutons */
+.premium-page-nav-btn {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(3, 51, 49, 0.18);
+    border-radius: 50%;
+
+    background: rgba(248, 241, 228, 0.88);
+    color: #033331;
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    box-shadow:
+        0 10px 30px rgba(3, 51, 49, 0.12);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+        background 0.3s ease,
+        color 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.premium-page-nav-btn svg {
+    width: 19px;
+    height: 19px;
+
+    transition:
+        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Hover */
+.premium-page-nav-btn:hover {
+    background: #033331;
+    color: #f8f1e4;
+
+    border-color: #033331;
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 16px 35px rgba(3, 51, 49, 0.20);
+}
+
+#page-scroll-top:hover svg {
+    transform: translateY(-2px);
+}
+
+#page-scroll-bottom:hover svg {
+    transform: translateY(2px);
+}
+
+/* Pression */
+.premium-page-nav-btn:active {
+    transform: scale(0.94);
+}
+
+/* Accessibilité */
+.premium-page-nav-btn:focus-visible {
+    outline: 2px solid #033331;
+    outline-offset: 4px;
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 767px) {
+
+    .premium-page-nav {
+        right: 16px;
+        bottom: 16px;
+        gap: 8px;
+    }
+
+    .premium-page-nav-btn {
+        width: 44px;
+        height: 44px;
+    }
+
+    .premium-page-nav-btn svg {
+        width: 17px;
+        height: 17px;
+    }
+}
+
+/* =========================================================
+   LUXURY BY ESS
+   ANNONCES • COMMUNIQUÉS • ARRIVAGES
+   ========================================================= */
+
+.luxury-news-section {
+    position: relative;
+    padding: 6rem 0;
+    background: #f8f1e4;
+    overflow: hidden;
+}
+
+
+/* ---------------------------------------------------------
+   HEADER
+   --------------------------------------------------------- */
+
+.luxury-news-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 3.5rem;
+}
+
+.luxury-news-eyebrow {
+    display: block;
+    margin-bottom: 0.6rem;
+
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 500;
+
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+
+    color: rgba(3, 51, 49, 0.55);
+}
+
+.luxury-news-title {
+    margin: 0;
+
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.4rem);
+    line-height: 1.05;
+
+    color: #033331;
+    letter-spacing: 0.01em;
+}
+
+.luxury-news-line {
+    flex: 1;
+    max-width: 180px;
+    height: 1px;
+    margin-bottom: 0.5rem;
+
+    background: rgba(3, 51, 49, 0.18);
+}
+
+
+/* ---------------------------------------------------------
+   GRID
+   --------------------------------------------------------- */
+
+.luxury-news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+}
+
+
+/* ---------------------------------------------------------
+   CARD
+   --------------------------------------------------------- */
+
+.luxury-news-card {
+    position: relative;
+    overflow: hidden;
+
+    background: #ffffff;
+
+    border: 1px solid rgba(3, 51, 49, 0.10);
+
+    box-shadow:
+        0 15px 40px rgba(3, 51, 49, 0.07);
+
+    transition:
+        transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.5s ease,
+        border-color 0.4s ease;
+}
+
+.luxury-news-card:hover {
+    transform: translateY(-8px);
+
+    border-color: rgba(3, 51, 49, 0.22);
+
+    box-shadow:
+        0 25px 55px rgba(3, 51, 49, 0.14);
+}
+
+
+/* ---------------------------------------------------------
+   IMAGE
+   --------------------------------------------------------- */
+
+.luxury-news-card-image {
+    position: relative;
+
+    height: 270px;
+
+    overflow: hidden;
+
+    background: #033331;
+}
+
+.luxury-news-card-image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition:
+        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+        filter 0.6s ease;
+}
+
+.luxury-news-card:hover
+.luxury-news-card-image img {
+    transform: scale(1.06);
+}
+
+
+/* ---------------------------------------------------------
+   IMAGE OVERLAY
+   --------------------------------------------------------- */
+
+.luxury-news-card-overlay {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(3, 51, 49, 0.78) 0%,
+            rgba(3, 51, 49, 0.22) 48%,
+            rgba(3, 51, 49, 0.04) 100%
+        );
+
+    pointer-events: none;
+}
+
+
+/* ---------------------------------------------------------
+   BADGE
+   --------------------------------------------------------- */
+
+.luxury-news-badge {
+    position: absolute;
+    top: 1.25rem;
+    left: 1.25rem;
+
+    padding: 0.5rem 0.75rem;
+
+    border: 1px solid rgba(248, 241, 228, 0.4);
+
+    background: rgba(3, 51, 49, 0.72);
+
+    color: #f8f1e4;
+
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.58rem;
+    font-weight: 500;
+
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+
+/* ---------------------------------------------------------
+   CONTENT
+   --------------------------------------------------------- */
+
+.luxury-news-card-content {
+    padding: 1.75rem;
+}
+
+.luxury-news-card-date {
+    display: block;
+
+    margin-bottom: 0.65rem;
+
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.58rem;
+
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+
+    color: rgba(3, 51, 49, 0.48);
+}
+
+.luxury-news-card-content h3 {
+    margin: 0 0 0.8rem;
+
+    font-family: 'Playfair Display', serif;
+    font-size: 1.65rem;
+    line-height: 1.15;
+
+    color: #033331;
+}
+
+.luxury-news-card-content p {
+    margin: 0;
+
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.82rem;
+    line-height: 1.8;
+
+    color: rgba(3, 51, 49, 0.68);
+}
+
+
+/* ---------------------------------------------------------
+   LINK / ACTION
+   --------------------------------------------------------- */
+
+.luxury-news-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+
+    margin-top: 1.4rem;
+    padding: 0;
+
+    border: 0;
+    background: transparent;
+
+    color: #033331;
+
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 600;
+
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+
+    cursor: pointer;
+
+    transition:
+        gap 0.35s ease,
+        opacity 0.3s ease;
+}
+
+.luxury-news-link span {
+    font-size: 1rem;
+
+    transition:
+        transform 0.35s ease;
+}
+
+.luxury-news-link:hover {
+    gap: 0.9rem;
+}
+
+.luxury-news-link:hover span {
+    transform: translateX(3px);
+}
+
+.luxury-news-link:focus-visible {
+    outline: 2px solid #033331;
+    outline-offset: 5px;
+}
+
+
+/* ---------------------------------------------------------
+   FEATURED CARD
+   --------------------------------------------------------- */
+
+.luxury-news-card-featured {
+    border-color: rgba(3, 51, 49, 0.16);
+}
+
+
+/* ---------------------------------------------------------
+   TABLET
+   --------------------------------------------------------- */
+
+@media (max-width: 900px) {
+
+    .luxury-news-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .luxury-news-card-featured {
+        grid-column: span 2;
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   MOBILE
+   --------------------------------------------------------- */
+
+@media (max-width: 640px) {
+
+    .luxury-news-section {
+        padding: 4.5rem 0;
+    }
+
+    .luxury-news-header {
+        display: block;
+        margin-bottom: 2.5rem;
+    }
+
+    .luxury-news-line {
+        width: 70px;
+        margin-top: 1.25rem;
+    }
+
+    .luxury-news-grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+
+    .luxury-news-card-featured {
+        grid-column: auto;
+    }
+
+    .luxury-news-card-image {
+        height: 230px;
+    }
+
+    .luxury-news-card-content {
+        padding: 1.4rem;
+    }
+
+    .luxury-news-card-content h3 {
+        font-size: 1.45rem;
+    }
+
+}

@@ -2,64 +2,43 @@
   // --- Product Data ---
 const products = [
     {
-        id: 1,
-        name: "Chronographe Royal",
-        category: "horlogerie",
-        brand: "rolex",
-        price: 12500,
-        img: "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?q=80&w=1780&auto=format&fit=crop",
-        desc: "Or rose 18 carats, mouvement automatique suisse."
-    },
+    id: 1,
+    name: "Chronographe Royal",
+    category: "horlogerie",
+    brand: "rolex",
+    price: 12500,
 
-    {
-        id: 2,
-        name: "Le Sac Céleste",
-        category: "maroquinerie",
-        brand: "cartier",
-        price: 3400,
-        img: "https://images.unsplash.com/photo-1584916201218-f4242ceb4809?q=80&w=1915&auto=format&fit=crop",
-        desc: "Cuir grainé pleine fleur, fermoir signature."
-    },
+    images: [
+        {
+            src: "montre_platine.jpg",
+            label: "Vue principale"
+        },
+        {
+            src: "Rolex_vue_arriere.webp",
+            label: "Vue arrière"
+        },
+        {
+            src: "vue_gauche_2.jpg",
+            label: "Vue gauche"
+        },
+        {
+            src: "vue_gauche_1.jpg",
+            label: "Vue droite"
+        },
+        {
+            src: "vue_dessus_rolex.jpg",
+            label: "Vue de dessus"
+        },
+        {
+            src: "vue_de_enbas.jpg",
+            label: "Vue de dessous"
+        }
+    ],
 
-    {
-        id: 3,
-        name: "Essence de Nuit",
-        category: "parfums",
-        brand: "cartier",
-        price: 350,
-        img: "https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=1974&auto=format&fit=crop",
-        desc: "Eau de parfum, notes boisées et ambrées."
-    },
+    img: "rolex-face.jpg",
 
-    {
-        id: 4,
-        name: "Montre Squelette",
-        category: "horlogerie",
-        brand: "audemars-piguet",
-        price: 28000,
-        img: "montre_platine.jpg",
-        desc: "Mécanisme apparent, édition limitée à 50 exemplaires."
-    },
-
-    {
-        id: 5,
-        name: "Porte-cartes Onyx",
-        category: "accessoires",
-        brand: "patek-philippe",
-        price: 280,
-        img: "https://images.unsplash.com/photo-1627123424574-724758594e93?q=80&w=1974&auto=format&fit=crop",
-        desc: "Cuir de veau lisse, finition bords francs."
-    },
-
-    {
-        id: 6,
-        name: "Lunettes Solaires Riviera",
-        category: "accessoires",
-        brand: "cartier",
-        price: 450,
-        img: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?q=80&w=2080&auto=format&fit=crop",
-        desc: "Monture écaille véritable, verres polarisés."
-    }
+    desc: "Or rose 18 carats, mouvement automatique suisse."
+}
 ];
 
 // =========================================================
@@ -196,6 +175,12 @@ const brandCatalogs = {
         // --- DOM Elements ---
         const header = document.getElementById('main-header');
         const menuBtn = document.getElementById('menu-btn');
+        const searchBtn = document.getElementById('search-btn');
+        const searchPanel = document.getElementById('search-panel');
+        const searchBackdrop = document.getElementById('search-backdrop');
+        const searchInput = document.getElementById('search-input');
+        const searchResults = document.getElementById('search-results');
+        const searchCloseBtn = document.getElementById('search-close-btn');
         const closeMenuBtn = document.getElementById('close-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const cartBtn = document.getElementById('cart-btn');
@@ -218,6 +203,88 @@ const brandCatalogs = {
         const resetBrandFilter = document.getElementById('reset-brand-filter');
         const bestProductsScroll = document.getElementById('best-products-scroll');
 
+        // =========================================================
+// PREMIUM CATALOGUE ACCORDION
+// =========================================================
+
+const catalogueToggle =
+    document.getElementById('catalogue-toggle');
+
+const catalogueContent =
+    document.getElementById('catalogue-content');
+
+let catalogueOpen = false;
+
+
+const toggleCatalogue = () => {
+
+    catalogueOpen = !catalogueOpen;
+
+
+    // -----------------------------------------------------
+    // UPDATE BUTTON STATE
+    // -----------------------------------------------------
+
+    catalogueToggle.classList.toggle(
+        'is-flipped',
+        catalogueOpen
+    );
+
+
+    // -----------------------------------------------------
+    // UPDATE CATALOGUE
+    // -----------------------------------------------------
+
+    catalogueContent.classList.toggle(
+        'is-open',
+        catalogueOpen
+    );
+
+
+    // -----------------------------------------------------
+    // ACCESSIBILITY
+    // -----------------------------------------------------
+
+    catalogueToggle.setAttribute(
+        'aria-expanded',
+        String(catalogueOpen)
+    );
+
+    catalogueContent.setAttribute(
+        'aria-hidden',
+        String(!catalogueOpen)
+    );
+
+
+    // -----------------------------------------------------
+    // SCROLL TO CATALOGUE AFTER OPENING
+    // -----------------------------------------------------
+
+    if (catalogueOpen) {
+
+        setTimeout(() => {
+
+            catalogueContent.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+
+        }, 850);
+
+    }
+
+};
+
+
+if (catalogueToggle && catalogueContent) {
+
+    catalogueToggle.addEventListener(
+        'click',
+        toggleCatalogue
+    );
+
+}
+
         
         // --- Header Scroll Effect ---
         window.addEventListener('scroll', () => {
@@ -230,24 +297,404 @@ const brandCatalogs = {
             }
         });
 
-        // --- Mobile Menu Toggle ---
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.add('open');
-            document.body.style.overflow = 'hidden';
+// --- Mobile Menu Toggle ---
+menuBtn.addEventListener('click', () => {
+
+    const isOpen = mobileMenu.classList.contains('open');
+
+    if (isOpen) {
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+    } else {
+        mobileMenu.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+});
+
+closeMenuBtn.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
+});
+
+// Close menu on link click
+document.querySelectorAll('#mobile-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+    });
+});
+
+        // =========================================================
+// PREMIUM PRODUCT SEARCH
+// =========================================================
+
+const normalizeSearchText = (value) => {
+    return String(value || '')
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .trim();
+};
+
+
+// ---------------------------------------------------------
+// OPEN SEARCH
+// ---------------------------------------------------------
+
+const openSearch = () => {
+
+    searchPanel.classList.add('open');
+    searchBackdrop.classList.add('open');
+
+    searchBtn.setAttribute('aria-expanded', 'true');
+
+    document.body.style.overflow = 'hidden';
+
+    setTimeout(() => {
+        searchInput.focus();
+    }, 250);
+
+    renderSearchResults('');
+};
+
+
+// ---------------------------------------------------------
+// CLOSE SEARCH
+// ---------------------------------------------------------
+
+const closeSearch = () => {
+
+    searchPanel.classList.remove('open');
+    searchBackdrop.classList.remove('open');
+
+    searchBtn.setAttribute('aria-expanded', 'false');
+
+    searchInput.value = '';
+
+    searchResults.innerHTML = '';
+
+    document.body.style.overflow = '';
+};
+
+
+// ---------------------------------------------------------
+// SEARCH PRODUCTS
+// ---------------------------------------------------------
+
+const searchProducts = (query) => {
+
+    const normalizedQuery = normalizeSearchText(query);
+
+    if (!normalizedQuery) {
+        return [];
+    }
+
+    return products.filter(product => {
+
+        const searchableContent = [
+            product.name,
+            product.brand,
+            product.category,
+            product.desc
+        ]
+            .map(normalizeSearchText)
+            .join(' ');
+
+        return searchableContent.includes(normalizedQuery);
+    });
+};
+
+
+// ---------------------------------------------------------
+// RENDER SEARCH RESULTS
+// ---------------------------------------------------------
+
+const renderSearchResults = (query) => {
+
+    const normalizedQuery = normalizeSearchText(query);
+
+    // Recherche vide
+    if (!normalizedQuery) {
+
+        searchResults.innerHTML = `
+            <div class="search-hint">
+                Recherchez une pièce, une maison ou une catégorie.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    const results = searchProducts(normalizedQuery);
+
+
+    // Aucun résultat
+    if (results.length === 0) {
+
+        searchResults.innerHTML = `
+            <div class="search-empty">
+
+                <span class="search-empty-label">
+                    Recherche
+                </span>
+
+                <p class="search-empty-title">
+                    Aucun produit trouvé
+                </p>
+
+                <p class="text-sm text-brand-dark-cyan/50 mt-2">
+                    Essayez un autre nom, une autre marque ou une catégorie.
+                </p>
+
+            </div>
+        `;
+
+        return;
+    }
+
+
+    // Résultats
+    searchResults.innerHTML = '';
+
+
+    results.forEach(product => {
+
+        const result = document.createElement('button');
+
+        result.type = 'button';
+
+        result.className = 'search-result-item';
+
+        result.innerHTML = `
+            <img
+                src="${product.img}"
+                alt="${product.name}"
+                class="search-result-image"
+                loading="lazy"
+            >
+
+            <span class="search-result-info">
+
+                <span class="search-result-brand">
+                    ${product.brand || product.category}
+                </span>
+
+                <span class="search-result-name">
+                    ${product.name}
+                </span>
+
+            </span>
+
+            <span class="search-result-price">
+                ${formatPrice(product.price)}
+            </span>
+
+            <svg
+                class="w-4 h-4 text-brand-dark-cyan/30 flex-shrink-0"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d="M9 5l7 7-7 7"
+                ></path>
+            </svg>
+        `;
+
+
+        result.addEventListener('click', () => {
+
+            goToSearchedProduct(product.id);
+
         });
 
-        closeMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.remove('open');
-            document.body.style.overflow = '';
+
+        searchResults.appendChild(result);
+
+    });
+
+};
+
+
+// ---------------------------------------------------------
+// REDIRECT TO PRODUCT
+// ---------------------------------------------------------
+
+const goToSearchedProduct = (productId) => {
+
+    const product = products.find(
+        item => item.id === productId
+    );
+
+    if (!product) return;
+
+
+    // Fermer la recherche
+    closeSearch();
+
+
+    // Désactiver les filtres de catégorie
+    filterBtns.forEach(btn => {
+
+        btn.classList.remove(
+            'active',
+            'border-brand-dark-cyan',
+            'text-brand-dark-cyan'
+        );
+
+        btn.classList.add(
+            'border-transparent',
+            'text-brand-dark-cyan/60'
+        );
+
+    });
+
+
+    // Activer "Tout"
+    const allFilter = document.querySelector(
+        '.filter-btn[data-filter="all"]'
+    );
+
+    if (allFilter) {
+
+        allFilter.classList.remove(
+            'border-transparent',
+            'text-brand-dark-cyan/60'
+        );
+
+        allFilter.classList.add(
+            'active',
+            'border-brand-dark-cyan',
+            'text-brand-dark-cyan'
+        );
+
+    }
+
+
+    // Masquer le filtre des marques
+    brandFilterSection.classList.add('hidden');
+
+    resetBrandFilter.classList.add('hidden');
+
+
+    // Afficher tous les produits
+    renderProducts('all');
+
+
+    // Attendre que le DOM soit reconstruit
+    setTimeout(() => {
+
+        const productCards =
+            productGrid.querySelectorAll('.product-card');
+
+        let targetCard = null;
+
+
+        productCards.forEach(card => {
+
+            const title =
+                card.querySelector('h3');
+
+            if (
+                title &&
+                normalizeSearchText(title.textContent) ===
+                normalizeSearchText(product.name)
+            ) {
+                targetCard = card;
+            }
+
         });
 
-        // Close menu on link click
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('open');
-                document.body.style.overflow = '';
-            });
+
+        if (!targetCard) return;
+
+
+        // Redirection visuelle vers le produit
+        targetCard.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
         });
+
+
+        // Mise en évidence temporaire
+        setTimeout(() => {
+
+            targetCard.classList.add(
+                'search-highlight'
+            );
+
+        }, 500);
+
+
+        // Retirer la mise en évidence
+        setTimeout(() => {
+
+            targetCard.classList.remove(
+                'search-highlight'
+            );
+
+        }, 3000);
+
+    }, 100);
+
+};
+
+
+// ---------------------------------------------------------
+// SEARCH EVENTS
+// ---------------------------------------------------------
+
+searchBtn.addEventListener(
+    'click',
+    openSearch
+);
+
+searchCloseBtn.addEventListener(
+    'click',
+    closeSearch
+);
+
+searchBackdrop.addEventListener(
+    'click',
+    closeSearch
+);
+
+
+searchInput.addEventListener(
+    'input',
+    (event) => {
+
+        renderSearchResults(
+            event.target.value
+        );
+
+    }
+);
+
+
+// ---------------------------------------------------------
+// ESCAPE KEY
+// ---------------------------------------------------------
+
+document.addEventListener(
+    'keydown',
+    (event) => {
+
+        if (
+            event.key === 'Escape' &&
+            searchPanel.classList.contains('open')
+        ) {
+            closeSearch();
+        }
+
+    }
+);
 
         // --- Cart Toggle ---
         const openCart = () => {
@@ -598,6 +1045,740 @@ const renderBrandFilters = (category) => {
 
 };
 
+// =========================================================
+// MULTI-VIEW PRODUCT GALLERY
+// =========================================================
+
+const getProductImages = (product) => {
+
+    if (
+        Array.isArray(product.images) &&
+        product.images.length
+    ) {
+        return product.images;
+    }
+
+    return [
+        {
+            src: product.img,
+            label: "Vue principale"
+        }
+    ];
+};
+
+
+// ---------------------------------------------------------
+// PRODUCT GALLERY
+// ---------------------------------------------------------
+
+const createProductGallery = (product) => {
+
+    const images = getProductImages(product);
+
+    const galleryId = `product-gallery-${product.id}`;
+
+    const mainImage = images[0];
+
+    const gallery = document.createElement('div');
+
+    gallery.className = 'luxury-product-gallery';
+
+    gallery.dataset.galleryId = galleryId;
+
+    gallery.innerHTML = `
+
+        <div class="luxury-gallery-main">
+
+            <img
+                src="${mainImage.src}"
+                alt="${product.name} — ${mainImage.label}"
+                class="luxury-gallery-main-image"
+                data-gallery-main
+                loading="lazy"
+            >
+
+            ${
+                images.length > 1
+                ? `
+                    <button
+                        type="button"
+                        class="luxury-gallery-arrow luxury-gallery-prev"
+                        aria-label="Vue précédente"
+                        data-gallery-prev
+                    >
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            aria-hidden="true"
+                        >
+                            <path
+                                d="M15 18l-6-6 6-6"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            />
+                        </svg>
+                    </button>
+
+                    <button
+                        type="button"
+                        class="luxury-gallery-arrow luxury-gallery-next"
+                        aria-label="Vue suivante"
+                        data-gallery-next
+                    >
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            aria-hidden="true"
+                        >
+                            <path
+                                d="M9 18l6-6-6-6"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            />
+                        </svg>
+                    </button>
+                `
+                : ''
+            }
+
+            <button
+                type="button"
+                class="luxury-gallery-zoom"
+                aria-label="Agrandir l'image de ${product.name}"
+                data-gallery-zoom
+            >
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                >
+                    <circle
+                        cx="11"
+                        cy="11"
+                        r="6.5"
+                        stroke-width="1.5"
+                    />
+
+                    <path
+                        d="M16 16l5 5"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                    />
+
+                    <path
+                        d="M11 8v6M8 11h6"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                    />
+                </svg>
+            </button>
+
+        </div>
+
+        ${
+            images.length > 1
+            ? `
+                <div
+                    class="luxury-gallery-thumbnails"
+                    role="tablist"
+                    aria-label="Vues de ${product.name}"
+                >
+
+                    ${images.map((image, index) => `
+
+                        <button
+                            type="button"
+                            class="
+                                luxury-gallery-thumbnail
+                                ${index === 0 ? 'active' : ''}
+                            "
+                            data-gallery-index="${index}"
+                            role="tab"
+                            aria-label="${image.label}"
+                            aria-selected="${index === 0}"
+                        >
+
+                            <img
+                                src="${image.src}"
+                                alt="${product.name} — ${image.label}"
+                                loading="lazy"
+                            >
+
+                        </button>
+
+                    `).join('')}
+
+                </div>
+            `
+            : ''
+        }
+
+    `;
+
+
+    // -----------------------------------------------------
+    // GALLERY STATE
+    // -----------------------------------------------------
+
+    let currentIndex = 0;
+
+
+    const mainImageElement =
+        gallery.querySelector('[data-gallery-main]');
+
+    const thumbnails =
+        gallery.querySelectorAll(
+            '.luxury-gallery-thumbnail'
+        );
+
+
+    const updateGallery = (index) => {
+
+        if (!images[index]) return;
+
+        currentIndex = index;
+
+        const selectedImage = images[index];
+
+
+        // Image principale
+        mainImageElement.classList.add(
+            'luxury-gallery-changing'
+        );
+
+
+        setTimeout(() => {
+
+            mainImageElement.src =
+                selectedImage.src;
+
+            mainImageElement.alt =
+                `${product.name} — ${selectedImage.label}`;
+
+            mainImageElement.classList.remove(
+                'luxury-gallery-changing'
+            );
+
+        }, 120);
+
+
+        // État des miniatures
+        thumbnails.forEach((thumbnail, thumbnailIndex) => {
+
+            const isActive =
+                thumbnailIndex === index;
+
+            thumbnail.classList.toggle(
+                'active',
+                isActive
+            );
+
+            thumbnail.setAttribute(
+                'aria-selected',
+                String(isActive)
+            );
+
+        });
+
+    };
+
+
+    // -----------------------------------------------------
+    // THUMBNAILS
+    // -----------------------------------------------------
+
+    thumbnails.forEach((thumbnail) => {
+
+        thumbnail.addEventListener(
+            'click',
+            () => {
+
+                const index =
+                    Number(
+                        thumbnail.dataset.galleryIndex
+                    );
+
+                updateGallery(index);
+
+            }
+        );
+
+    });
+
+
+    // -----------------------------------------------------
+    // PREVIOUS
+    // -----------------------------------------------------
+
+    const previousButton =
+        gallery.querySelector('[data-gallery-prev]');
+
+    if (previousButton) {
+
+        previousButton.addEventListener(
+            'click',
+            (event) => {
+
+                event.stopPropagation();
+
+                const previousIndex =
+                    currentIndex === 0
+                        ? images.length - 1
+                        : currentIndex - 1;
+
+                updateGallery(previousIndex);
+
+            }
+        );
+
+    }
+
+
+    // -----------------------------------------------------
+    // NEXT
+    // -----------------------------------------------------
+
+    const nextButton =
+        gallery.querySelector('[data-gallery-next]');
+
+    if (nextButton) {
+
+        nextButton.addEventListener(
+            'click',
+            (event) => {
+
+                event.stopPropagation();
+
+                const nextIndex =
+                    currentIndex === images.length - 1
+                        ? 0
+                        : currentIndex + 1;
+
+                updateGallery(nextIndex);
+
+            }
+        );
+
+    }
+
+
+    // -----------------------------------------------------
+    // ZOOM / LIGHTBOX
+    // -----------------------------------------------------
+
+    const zoomButton =
+        gallery.querySelector('[data-gallery-zoom]');
+
+    if (zoomButton) {
+
+        zoomButton.addEventListener(
+            'click',
+            (event) => {
+
+                event.stopPropagation();
+
+                openProductLightbox(
+                    product,
+                    images,
+                    currentIndex
+                );
+
+            }
+        );
+
+    }
+
+
+    // -----------------------------------------------------
+    // SWIPE MOBILE
+    // -----------------------------------------------------
+
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+
+    mainImageElement.addEventListener(
+        'touchstart',
+        (event) => {
+
+            touchStartX =
+                event.changedTouches[0].screenX;
+
+        },
+        { passive: true }
+    );
+
+
+    mainImageElement.addEventListener(
+        'touchend',
+        (event) => {
+
+            touchEndX =
+                event.changedTouches[0].screenX;
+
+            const distance =
+                touchStartX - touchEndX;
+
+
+            if (Math.abs(distance) < 40) {
+                return;
+            }
+
+
+            if (distance > 0) {
+
+                const nextIndex =
+                    currentIndex === images.length - 1
+                        ? 0
+                        : currentIndex + 1;
+
+                updateGallery(nextIndex);
+
+            } else {
+
+                const previousIndex =
+                    currentIndex === 0
+                        ? images.length - 1
+                        : currentIndex - 1;
+
+                updateGallery(previousIndex);
+
+            }
+
+        },
+        { passive: true }
+    );
+
+
+    return gallery;
+};
+
+// =========================================================
+// PRODUCT LIGHTBOX
+// =========================================================
+
+let productLightbox = null;
+
+
+const createProductLightbox = () => {
+
+    if (productLightbox) {
+        return productLightbox;
+    }
+
+
+    productLightbox =
+        document.createElement('div');
+
+    productLightbox.id =
+        'luxury-product-lightbox';
+
+    productLightbox.className =
+        'luxury-product-lightbox';
+
+
+    productLightbox.innerHTML = `
+
+        <div
+            class="luxury-lightbox-inner"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Galerie produit"
+        >
+
+            <button
+                type="button"
+                class="luxury-lightbox-close"
+                aria-label="Fermer la galerie"
+            >
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                >
+                    <path
+                        d="M6 6l12 12M18 6L6 18"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                    />
+                </svg>
+            </button>
+
+
+            <button
+                type="button"
+                class="luxury-lightbox-arrow luxury-lightbox-prev"
+                aria-label="Vue précédente"
+            >
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                >
+                    <path
+                        d="M15 18l-6-6 6-6"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    />
+                </svg>
+            </button>
+
+
+            <div class="luxury-lightbox-image-wrapper">
+
+                <img
+                    class="luxury-lightbox-image"
+                    src=""
+                    alt=""
+                >
+
+            </div>
+
+
+            <button
+                type="button"
+                class="luxury-lightbox-arrow luxury-lightbox-next"
+                aria-label="Vue suivante"
+            >
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                >
+                    <path
+                        d="M9 18l6-6-6-6"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    />
+                </svg>
+            </button>
+
+
+            <div
+                class="luxury-lightbox-thumbnails"
+            ></div>
+
+        </div>
+
+    `;
+
+
+    document.body.appendChild(
+        productLightbox
+    );
+
+
+    // Fermeture
+    productLightbox
+        .querySelector('.luxury-lightbox-close')
+        .addEventListener(
+            'click',
+            closeProductLightbox
+        );
+
+
+    productLightbox
+        .addEventListener(
+            'click',
+            (event) => {
+
+                if (
+                    event.target ===
+                    productLightbox
+                ) {
+                    closeProductLightbox();
+                }
+
+            }
+        );
+
+
+    // ESC
+    document.addEventListener(
+        'keydown',
+        (event) => {
+
+            if (
+                event.key === 'Escape' &&
+                productLightbox.classList.contains('open')
+            ) {
+                closeProductLightbox();
+            }
+
+        }
+    );
+
+
+    return productLightbox;
+};
+
+
+// ---------------------------------------------------------
+// OPEN LIGHTBOX
+// ---------------------------------------------------------
+
+const openProductLightbox = (
+    product,
+    images,
+    selectedIndex
+) => {
+
+    const lightbox =
+        createProductLightbox();
+
+
+    let currentIndex =
+        selectedIndex;
+
+
+    const imageElement =
+        lightbox.querySelector(
+            '.luxury-lightbox-image'
+        );
+
+    const thumbnailsContainer =
+        lightbox.querySelector(
+            '.luxury-lightbox-thumbnails'
+        );
+
+
+    const updateLightbox = (index) => {
+
+        currentIndex = index;
+
+        const image =
+            images[currentIndex];
+
+
+        imageElement.src =
+            image.src;
+
+        imageElement.alt =
+            `${product.name} — ${image.label}`;
+
+
+        thumbnailsContainer
+            .querySelectorAll('button')
+            .forEach(
+                (thumbnail, thumbnailIndex) => {
+
+                    thumbnail.classList.toggle(
+                        'active',
+                        thumbnailIndex === currentIndex
+                    );
+
+                }
+            );
+
+    };
+
+
+    thumbnailsContainer.innerHTML =
+        images.map(
+            (image, index) => `
+
+                <button
+                    type="button"
+                    class="
+                        luxury-lightbox-thumbnail
+                        ${index === currentIndex ? 'active' : ''}
+                    "
+                    aria-label="${image.label}"
+                >
+                    <img
+                        src="${image.src}"
+                        alt=""
+                        loading="lazy"
+                    >
+                </button>
+
+            `
+        ).join('');
+
+
+    thumbnailsContainer
+        .querySelectorAll('button')
+        .forEach(
+            (thumbnail, index) => {
+
+                thumbnail.addEventListener(
+                    'click',
+                    () => {
+
+                        updateLightbox(index);
+
+                    }
+                );
+
+            }
+        );
+
+
+    lightbox
+        .querySelector('.luxury-lightbox-prev')
+        .onclick = () => {
+
+            const previousIndex =
+                currentIndex === 0
+                    ? images.length - 1
+                    : currentIndex - 1;
+
+            updateLightbox(previousIndex);
+
+        };
+
+
+    lightbox
+        .querySelector('.luxury-lightbox-next')
+        .onclick = () => {
+
+            const nextIndex =
+                currentIndex === images.length - 1
+                    ? 0
+                    : currentIndex + 1;
+
+            updateLightbox(nextIndex);
+
+        };
+
+
+    updateLightbox(currentIndex);
+
+
+    lightbox.classList.add('open');
+
+    document.body.style.overflow = 'hidden';
+
+};
+
+
+// ---------------------------------------------------------
+// CLOSE LIGHTBOX
+// ---------------------------------------------------------
+
+const closeProductLightbox = () => {
+
+    if (!productLightbox) {
+        return;
+    }
+
+    productLightbox.classList.remove(
+        'open'
+    );
+
+    document.body.style.overflow = '';
+
+};
+
         // --- Render Main Product Grid (with Filtering) ---
         // =========================================================
 // RENDER MAIN PRODUCT GRID
@@ -680,109 +1861,124 @@ const renderProducts = (
 
         card.innerHTML = `
 
-            <div
-                class="product-image-container
-                       relative
-                       h-80
-                       mb-6
-                       bg-[#f4ece0]"
+    <div
+        class="product-image-container
+               relative
+               h-80
+               mb-6
+               bg-[#f4ece0]"
+    >
+
+        <div
+            class="product-gallery-mount"
+            data-product-gallery="${p.id}"
+        ></div>
+
+        <div
+            class="absolute inset-0
+                   bg-brand-dark-cyan/20
+                   opacity-0
+                   group-hover:opacity-100
+                   transition-opacity
+                   duration-300
+                   flex items-center
+                   justify-center
+                   pointer-events-none"
+        >
+
+            <button
+                onclick="addToCart(${p.id}); event.stopPropagation();"
+                class="bg-brand-pale-orange
+                       text-brand-dark-cyan
+                       px-6
+                       py-3
+                       font-medium
+                       text-sm
+                       tracking-widest
+                       uppercase
+                       hover:bg-white
+                       transition-colors
+                       transform
+                       translate-y-4
+                       group-hover:translate-y-0
+                       duration-300
+                       pointer-events-auto"
             >
+                Ajouter au panier
+            </button>
 
-                <img
-                    src="${p.img}"
-                    alt="${p.name}"
-                    class="product-image w-full h-full object-cover"
-                >
+        </div>
 
-                <div
-                    class="absolute inset-0
-                           bg-brand-dark-cyan/20
-                           opacity-0
-                           group-hover:opacity-100
-                           transition-opacity
-                           duration-300
-                           flex items-center
-                           justify-center"
-                >
-
-                    <button
-                        onclick="addToCart(${p.id})"
-                        class="bg-brand-pale-orange
-                               text-brand-dark-cyan
-                               px-6
-                               py-3
-                               font-medium
-                               text-sm
-                               tracking-widest
-                               uppercase
-                               hover:bg-white
-                               transition-colors
-                               transform
-                               translate-y-4
-                               group-hover:translate-y-0
-                               duration-300"
-                    >
-                        Ajouter au panier
-                    </button>
-
-                </div>
-
-            </div>
+    </div>
 
 
-            <div
-                class="text-center
-                       flex-grow
-                       flex flex-col
-                       justify-between"
+    <div
+        class="text-center
+               flex-grow
+               flex flex-col
+               justify-between"
+    >
+
+        <div>
+
+            <span
+                class="text-xs
+                       text-brand-dark-cyan/50
+                       uppercase
+                       tracking-widest
+                       mb-2
+                       block"
             >
+                ${p.brand || p.category}
+            </span>
 
-                <div>
+            <h3
+                class="font-serif
+                       text-xl
+                       text-brand-dark-cyan
+                       mb-2"
+            >
+                ${p.name}
+            </h3>
 
-                    <span
-                        class="text-xs
-                               text-brand-dark-cyan/50
-                               uppercase
-                               tracking-widest
-                               mb-2
-                               block"
-                    >
-                        ${p.brand || p.category}
-                    </span>
+            <p
+                class="text-sm
+                       font-light
+                       text-brand-dark-cyan/70
+                       line-clamp-2
+                       mb-4"
+            >
+                ${p.desc}
+            </p>
 
-                    <h3
-                        class="font-serif
-                               text-xl
-                               text-brand-dark-cyan
-                               mb-2"
-                    >
-                        ${p.name}
-                    </h3>
+        </div>
 
-                    <p
-                        class="text-sm
-                               font-light
-                               text-brand-dark-cyan/70
-                               line-clamp-2
-                               mb-4"
-                    >
-                        ${p.desc}
-                    </p>
+        <p
+            class="font-medium
+                   text-lg
+                   text-brand-dark-cyan"
+        >
+            ${formatPrice(p.price)}
+        </p>
 
-                </div>
-
-                <p
-                    class="font-medium
-                           text-lg
-                           text-brand-dark-cyan"
-                >
-                    ${formatPrice(p.price)}
-                </p>
-
-            </div>
-        `;
+    </div>
+`;
 
         productGrid.appendChild(card);
+
+        // Initialisation de la galerie multi-vues
+const galleryMount =
+    card.querySelector(
+        '[data-product-gallery]'
+    );
+
+if (galleryMount) {
+
+    galleryMount.appendChild(
+        createProductGallery(p)
+    );
+
+}
 
 
         // Animation
@@ -935,27 +2131,46 @@ filterBtns.forEach(btn => {
 
         renderBrandFilters(filterValue);
 
-
         // -------------------------------------------------
-        // Product transition
-        // -------------------------------------------------
+// Product transition
+// -------------------------------------------------
 
-        productGrid.style.opacity = '0';
+productGrid.style.opacity = '0';
 
-        setTimeout(() => {
+setTimeout(() => {
 
-            /*
-             * On affiche d'abord les produits
-             * de la catégorie entière.
-             *
-             * Le client peut ensuite affiner
-             * avec une marque.
-             */
-            renderProducts(filterValue);
+    /*
+     * Aucun produit n'est affiché tant que
+     * le client n'a pas choisi une marque.
+     *
+     * Le second filtre devient l'étape
+     * intermédiaire obligatoire :
+     *
+     * Catégorie → Marque → Produits
+     */
+    productGrid.innerHTML = '';
 
-            productGrid.style.opacity = '1';
+    /*
+     * Si la catégorie possède bien un catalogue
+     * de marques, on attend la sélection du client.
+     */
+    if (
+        brandCatalogs[filterValue] &&
+        brandCatalogs[filterValue].length
+    ) {
+        productGrid.style.opacity = '1';
+        return;
+    }
 
-        }, 300);
+    /*
+     * Sécurité : si une future catégorie ne possède
+     * aucune marque, ses produits restent affichés.
+     */
+    renderProducts(filterValue);
+
+    productGrid.style.opacity = '1';
+
+}, 300);
 
     });
 
@@ -974,6 +2189,30 @@ resetBrandFilter.addEventListener('click', () => {
         });
 
     resetBrandFilter.classList.add('hidden');
+
+    // Récupérer la catégorie actuellement sélectionnée
+    const activeCategory =
+        document.querySelector('.filter-btn.active');
+
+    const category =
+        activeCategory
+            ? activeCategory.getAttribute('data-filter')
+            : 'all';
+
+    // Réafficher les produits de la catégorie
+    if (category !== 'all') {
+
+        productGrid.style.opacity = '0';
+
+        setTimeout(() => {
+
+            renderProducts(category);
+
+            productGrid.style.opacity = '1';
+
+        }, 200);
+
+    }
 
 });
 
